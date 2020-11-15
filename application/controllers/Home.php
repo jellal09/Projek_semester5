@@ -9,7 +9,7 @@ class Home extends CI_Controller {
        $data = array('title' => 'Home' , 
                     'isi' => 'v_home',
                 );
-            $this->load->view('layout/wrapper', $data, FALSE);
+            $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
             
     }
 

@@ -9,7 +9,7 @@ class Admin extends CI_Controller {
        $data = array('title' => 'Admin' , 
                     'isi' => 'v_admin',
                 );
-            $this->load->view('layout/wrapper_admin', $data, FALSE);
+            $this->load->view('layout/v_wrapper_admin', $data, FALSE);
             
     }
 

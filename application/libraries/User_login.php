@@ -18,6 +18,7 @@ class User_login
         if ($cek) {
             $nama = $cek->nama;
             $username = $cek->username;
+            $password = $cek->passowrd;
             $akses_level = $cek->akses_level;
 
             //buat session
@@ -27,20 +28,23 @@ class User_login
             redirect('admin');
         }else{
             //jika salah
-          $this->ci->session->set_flashdata('error', 'Username atau Password Salah');
-          redirect('auth/login_user');
-            
+            $this->ci->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">
+            Username dan password anda tidak sesuai
+          </div>');
+               redirect('auth/login_user');
         }
     }
 
     public function proteksi_halaman()
     {
         if ($this->ci->session->userdata('username') == '') {
-            $this->ci->session->set_flashdata('error', 'Anda Belum Login');
+            $this->ci->session->set_flashdata('error', '<div class="alert alert-danger" role="alert">
+            Silahkan login terlebih dahulu
+            </div>');
             redirect('auth/login_user');
         }
-        // else{
-        //     redirect('admin');
+       // else{
+            // redirect('admin');
         // }
     }
    public function logout()
@@ -48,7 +52,9 @@ class User_login
     $this->ci->session->unset_userdata('username');
     $this->ci->session->unset_userdata('nama');
     $this->ci->session->unset_userdata('akses_level'); 
-    $this->ci->session->set_flashdata('pesan', 'Anda Berhasil Logout');
+    $this->ci->session->set_flashdata('error', '<div class="alert alert-success" role="alert">
+            Anda Berhasil Logout, silahkan login kembali
+            </div>');
     redirect('auth/login_user');
    } 
 
