@@ -1,7 +1,7 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="<?= base_url('admin')?>" class="brand-link">
      <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">-->
       <i class="fas fa-crown" style="color:pink"></i>
@@ -30,7 +30,7 @@
             <i class="fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -54,7 +54,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?= base_url('kategori')?>" class="nav-link <?php if($this->uri->segment(1)=='kategori' ){echo "active";} ?>">
                 <i class="fas fa-clipboard-list"></i>
                   <p>Kategori</p>
                 </a>
@@ -67,55 +67,44 @@
               </li>
 
             </li>
-            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item ">
             <a href="<?= base_url('user')?>" class="nav-link <?php if($this->uri->segment(1)=='user' ){echo "active";} ?>">
             <i class="nav-icon fas fa-users"></i>
               <p>
                 User
-               
-              </p>
-            </a></li>
-              <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
-            <i class="fas fa-user-cog"></i>
-              <p>
-                Konfigurasi
-                <i class="right fas fa-angle-right"></i>
               </p>
             </a>
+            </li>
+            <!--nav konfigurasi-->
             
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link ">
-                <i class="fas fa-cog"></i>
-                  <p>Konfigurasi Umum</p>
+            <li class="nav-item">
+                <a href="<?= base_url('konfigurasi')?>" class="nav-link <?php if($this->uri->segment(1)=='konfigurasi' ){echo "active";} ?>">
+                <i class="fas fa-user-cog"></i>
+                  <p>Konfigurasi Web</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="fas fa-cog"></i>
-                  <p>Konfigurasi Logo</p>
+                <a href="<?= base_url('berita')?>" class="nav-link <?php if($this->uri->segment(1)=='berita' ){echo "active";} ?>">
+                <i class="fas fa-user-cog"></i>
+                  <p>Konfigurasi Berita</p>
                 </a>
               </li>
+
+               <!-- end nav konfigurasi-->
+              
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="fas fa-cog"></i>
-                  <p>Konfigurasi Ikon</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?= base_url('admin/ubah_pwd')?>" class="nav-link">
                 <i class="fas fa-cog"></i>
                   <p>Ubah Password</p>
                 </a>
               </li>
-            </ul>
-          </li>
+            
           <li class="nav-item">
-            <a href="<?= base_url('auth/logout_user')?>" class="nav-link">
+          <a data-toggle='modal' data-target='#logout' class="nav-link"><i class="fas fa-sign-out-alt"></i> <p> Logout</p> </a>
+            <!-- <a href="<?= base_url('auth/logout_user')?>" class="nav-link">
               <i class="nav-icon fas fa-sign"></i>
               <p> Logout</p>
-            </a>
+            </a>-->
           </li>
         </ul>
       </nav>
@@ -147,3 +136,24 @@
  <div class="content">
       <div class="container-fluid">
         <div class="row">
+
+        <!-- Modal -->
+<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Apakah anda yakin ingin Keluar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+        <a href="<?= base_url('auth/logout_user')?>" class="btn btn-primary"> Iya </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->

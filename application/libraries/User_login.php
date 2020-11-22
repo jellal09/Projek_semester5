@@ -18,13 +18,14 @@ class User_login
         if ($cek) {
             $nama = $cek->nama;
             $username = $cek->username;
-            $password = $cek->passowrd;
+            $password = $cek->password;
             $akses_level = $cek->akses_level;
 
             //buat session
             $this->ci->session->set_userdata('username', $username);
             $this->ci->session->set_userdata('nama', $nama);
             $this->ci->session->set_userdata('akses_level', $akses_level);
+            $this->ci->session->set_userdata('tanggal_update', $tanggal_update);
             redirect('admin');
         }else{
             //jika salah

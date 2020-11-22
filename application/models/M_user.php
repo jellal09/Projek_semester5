@@ -12,6 +12,12 @@ class M_user extends CI_Model
         return $this->db->get()->result();   
         
     }
+    public function delete($data)
+    {
+        $this->db->where($data);
+        $this->db->delete('user');
+    }
+
     
 
 }

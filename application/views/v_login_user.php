@@ -52,7 +52,7 @@
         <?= form_error('password', '<small class="text-danger pl-2">', '</small>');  ?>
         
         <p class="mb-2" >
-        <a href="forgot-password.html"><small>Lupa Password?</small></a>
+        <a href="<?= base_url('v_lupapwd'); ?>"><small>Lupa Password?</small></a>
         </p>
     
 
@@ -62,9 +62,7 @@
       <!-- /.social-auth-links -->
       <?php echo form_close()?>
      
-      <p class="text-center mb-0"  >
-        <a href="register.html" class="text-center"><small>Belum Punya Akun? Daftar Sekarang</small></a>
-      </p>
+     
     </div>
   </div>
 </div>
