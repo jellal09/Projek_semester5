@@ -30,24 +30,25 @@ class M_auth extends CI_Model
  }  
  public function lupapwd()
     {
-        $emailpen=set_value('emailpen');
-        $nopen=set_value('nopen');
+        $email=set_value('email');
+       
         $result= $this->db
-                    ->where('emailpen',$emailpen)
-                    ->where('nopen',$nopen)
+                    ->where('email',$email)
                     ->limit(1)
-                    ->get_where('penyewa');
+                    ->get_where('user');
         if($result->num_rows()> 0){
             return $result->row();
         }else{
             return FALSE;
         }
     }
-public function gantipwd ($where,$data,$table)
+    public function gantipwd ($data)
     {
-        $this->db->where($where); 
-        $this->db->update($table,$data);
+        $this->db->where('id_user',$data['id_user']);
+        $this->db->update('user',$data);
     } 
+    
+    
 
 }
 

@@ -17,7 +17,12 @@ class M_user extends CI_Model
         $this->db->where($data);
         $this->db->delete('user');
     }
-
+    //ubah pwd pada admin
+    public function ubahpwd ($data)
+    {
+        $this->db->where('id_user',$data['id_user']);
+        $this->db->update('user',$data);
+    } 
     
 
 }

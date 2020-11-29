@@ -27,7 +27,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
-            <i class="fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
                 <i class="right fas fa-angle-left"></i>
@@ -37,31 +37,49 @@
               
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="fas fa-chart-line"></i>
+                <i class="nav-icon fas fa-chart-line"></i>
                   <p>Grafik stok</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="fas fa-calculator"></i>
+                <i class="nav-icon fas fa-calculator"></i>
                   <p>Pesanan</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="fas fa-clipboard-list"></i>
+              <!--nav sub bab produk-->
+              <li class="nav-item has-treeview menu-open">
+              <a href="" class="nav-link">
+                <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>Produk</p>
+                  <i class="right fas fa-angle-left"></i>
                 </a>
+              <!--sub bab-->
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="<?= base_url('produk')?>" class="nav-link <?php if($this->uri->segment(1)=='produk' ){echo "active";} ?>">
+                  <i class="nav-icon  fas fa-list"></i>
+                    <p> Data Produk</p>
+                  </a>
+                </li>
+              <li class="nav-item">
+              <a href="<?= base_url('gambar_produk')?>" class="nav-link <?php if($this->uri->segment(1)=='gambar_produk' ){echo "active";} ?>">
+                  <i class="nav-icon fas fa-image"></i>
+                  <p>Gambar Produk</p>
+                  </a>
               </li>
+            </ul>
+          </li>
+              <!--end nav sub bab produk-->
               <li class="nav-item">
                 <a href="<?= base_url('kategori')?>" class="nav-link <?php if($this->uri->segment(1)=='kategori' ){echo "active";} ?>">
-                <i class="fas fa-clipboard-list"></i>
+                <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>Kategori</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="fas fa-file"></i>
+                <i class="nav-icon fas fa-file"></i>
                   <p>Laporan</p>
                 </a>
               </li>
@@ -69,38 +87,47 @@
             </li>
             <li class="nav-item ">
             <a href="<?= base_url('user')?>" class="nav-link <?php if($this->uri->segment(1)=='user' ){echo "active";} ?>">
-            <i class="nav-icon fas fa-users"></i>
+            <i class=" nav-icon fas fa-users"></i>
               <p>
                 User
               </p>
             </a>
             </li>
             <!--nav konfigurasi-->
-            
-            <li class="nav-item">
+           <li class="nav-item has-treeview menu-open">
+              <a href="" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+                  <p>Konfigurasi</p>
+                  <i class="right fas fa-angle-left"></i>
+                </a>
+              <!--sub bab-->
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
                 <a href="<?= base_url('konfigurasi')?>" class="nav-link <?php if($this->uri->segment(1)=='konfigurasi' ){echo "active";} ?>">
-                <i class="fas fa-user-cog"></i>
+                <i class="nav-icon fas fa-cog"></i>
                   <p>Konfigurasi Web</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<?= base_url('berita')?>" class="nav-link <?php if($this->uri->segment(1)=='berita' ){echo "active";} ?>">
-                <i class="fas fa-user-cog"></i>
-                  <p>Konfigurasi Berita</p>
-                </a>
+                <i class="nav-icon fas fa-cog"></i>
+                  <p>Konfigurasi Artikel</p>
+                  </a>
               </li>
+            </ul>
+          </li>
 
                <!-- end nav konfigurasi-->
               
               <li class="nav-item">
-                <a href="<?= base_url('admin/ubah_pwd')?>" class="nav-link">
-                <i class="fas fa-cog"></i>
+                <a href="<?= base_url('ubahpwd')?>" class="nav-link <?php if($this->uri->segment(1)=='ubahpwd' ){echo "active";} ?>">
+                <i class="nav-icon fas fa-unlock-alt"></i>
                   <p>Ubah Password</p>
                 </a>
               </li>
             
           <li class="nav-item">
-          <a data-toggle='modal' data-target='#logout' class="nav-link"><i class="fas fa-sign-out-alt"></i> <p> Logout</p> </a>
+          <a data-toggle='modal' data-target='#logout' class="nav-link"><i class="nav-icon fas fa-sign-out-alt"></i> <p> Logout</p> </a>
             <!-- <a href="<?= base_url('auth/logout_user')?>" class="nav-link">
               <i class="nav-icon fas fa-sign"></i>
               <p> Logout</p>

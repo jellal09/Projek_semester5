@@ -15,7 +15,7 @@ class Berita extends CI_Controller {
     {
      
         $data = array(
-            'title' => 'Berita',
+            'title' => 'Artikel',
             'isi' => 'v_berita',
             'berita' => $this->m_berita->get_all_data(), 
         );

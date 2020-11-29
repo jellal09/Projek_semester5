@@ -60,7 +60,7 @@
                 <!--div class col md12-->
                      <div class="col-md-12">
                       <label for="exampleInputPassword1">Deskripsi Web</label>
-                      <input type="text" class="form-control" id="deskripsi"  name="deskripsi" placeholder="toko istana adalah ..." value="<?=$value->deskripsi?>" required>
+                      <textarea type="text" class="form-control" id="deskripsi"  name="deskripsi" placeholder="toko istana adalah ..." value="<?=$value->deskripsi?>" required></textarea>
                       </div>
                  <!--end div class col md12-->
             </div>

@@ -15,7 +15,7 @@ class Konfigurasi extends CI_Controller {
     {
      
         $data = array(
-            'title' => 'Konfigurasi',
+            'title' => 'Konfigurasi Web',
             'isi' => 'v_konfigurasi',
             'setting' => $this->m_konfigurasi->get_all_data(), 
         );

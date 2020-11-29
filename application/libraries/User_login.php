@@ -22,6 +22,7 @@ class User_login
             $akses_level = $cek->akses_level;
 
             //buat session
+            $this->ci->session->set_userdata('id_user', $id_user);
             $this->ci->session->set_userdata('username', $username);
             $this->ci->session->set_userdata('nama', $nama);
             $this->ci->session->set_userdata('akses_level', $akses_level);
@@ -54,7 +55,7 @@ class User_login
     $this->ci->session->unset_userdata('nama');
     $this->ci->session->unset_userdata('akses_level'); 
     $this->ci->session->set_flashdata('error', '<div class="alert alert-success" role="alert">
-            Anda Berhasil Logout, silahkan login kembali
+    Anda Berhasil Logout, silahkan login kembali
             </div>');
     redirect('auth/login_user');
    } 

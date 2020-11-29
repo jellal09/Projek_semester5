@@ -28,9 +28,11 @@
                       <td class="text-center"><?= $no++; ?></td>
                       <td class="text-center"><?= $value->nama_kategori ?></td>
                       <td class="text-center"><?= $value->tgl_update ?></td>
-                      <td  class="text-center">
+                      <td class="text-center py=0 ">
+                      <div class="btn-group btn-group-sm">
                       <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit<?=$value->id_kategori?>"><i class="fa fa-edit"></i></button>    
                       <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?=$value->id_kategori?>"><i class="fas fa-trash"></i></button>
+                      </div>
                       </td>
                     </tr>
                     <?php } ?>

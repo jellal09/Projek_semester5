@@ -3,7 +3,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
-  
+  public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('form_validation');
+		$this->load->model('m_auth');
+	}
 
     public function login_user()
     {
@@ -24,18 +29,18 @@ class Auth extends CI_Controller {
       
     }
 
-    public function lupa_pwd()
+    public function lupapwd()
     {
       $this->form_validation->set_rules('email', 'email', 'required|trim|valid_email',
       [  
         'required' => 'Harap Isi data terlebih daulu !',
-        'valid_email' => 'Harap menggunakan email yang valid'
+        'valid_email' => 'Harap menggunakan email yang valid',
       ]
       );
       
       if ($this->form_validation->run() == false) {
        
-        $this->load->view('v_lupapwd');
+        $this->load->view('v_lupapwd_admin');
     
       } else {
            //$this->_login();
@@ -44,17 +49,63 @@ class Auth extends CI_Controller {
            
       if ($cek==FALSE){
       
-        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+        $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
             Email anda belum terdaftar!
              </div>');
-           redirect('auth/_lupa_pwd');
+           redirect('auth/lupapwd');
            }else{
-              $this->session->set_userdata('id_penyewa', $cek->id_penyewa);
+              $this->session->set_userdata('id_user', $cek->id_user);
               $this->resetpwd(); 
               }
         }
     }
-
+    //reset pwd pada admin setelah verifikasi password pada email
+    public function resetpwd()
+    {
+      $this->form_validation->set_rules(
+        'password',
+        'password',
+        'required|trim|min_length[4]|max_length[10]|alpha_numeric|matches[password2]',
+        [
+          'required' => 'Harap Isi data terlebih daulu !',
+          'matches' => 'Password tidak cocok, periksa kembali',
+          'min_length' => 'Password terdiri atas 4 sampai 6 digit',
+          'max_length' => 'Password terdiri atas 4 sampai 6 digit',
+          'alpha_numerik' => 'Password terdiri atas angka dan abjad',
+          'trim' => 'Harap tidak menggunakan spasi',
+        ]
+      );
+      $this->form_validation->set_rules(
+        'password2',
+        'confirm password',
+        'required|trim|min_length[4]|max_length[10]|alpha_numeric|matches[password]',
+        [
+          'required' => 'Harap Isi data terlebih daulu !',
+          'matches' => 'Password tidak cocok, periksa kembali',
+          'min_length' => 'Password terdiri atas 4 sampai 6 digit',
+          'max_length' => 'Password terdiri atas 4 sampai 6 digit',
+          'alpha_numerik' => 'Password terdiri atas angka dan abjad',
+          'trim' => 'Harap tidak menggunakan spasi',
+        ]
+        );
+        $password= $this->input->post('password');
+        $password2 = $this->input->post('password2');
+      
+        //cek form validasi
+        if ($this->form_validation->run()== FALSE){
+          $this->load->view('v_resetpwdadmin'); 
+        }else{
+           $id= array('id_user' =>$this->session->userdata('id_user'));
+           $data= array('password' =>md5($this->input->post('password')));
+           $this->m_auth->gantipwd($id,$data);
+           
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">
+           Password berhasil di update! Silahkan login
+           </div>');
+           redirect('auth/login_user');
+        }    
+     }  
+   
     public function logout_user()
     {
         $this->user_login->logout();
