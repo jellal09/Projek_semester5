@@ -55,7 +55,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Berat</label>
-                        <input type="text" class="form-control" id="berat"  name="berat" placeholder="gr" value="<?= set_value('berat')?>"  >
+                        <input name="berat" type="number" class="form-control" min="0" placeholder="Berat Dalam Satuan Gram" value="<?= set_value('berat') ?>">
                         <?= form_error('berat', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                     </div>

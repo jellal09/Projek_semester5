@@ -20,7 +20,6 @@
                   <th>Deskripsi Produk</th>
                   <th>Kategori</th>
                   <th>Stok</th>
-                  <th>Berat</th>
                   <th>Harga</th>
                   <th>Action</th>
                   
@@ -33,12 +32,14 @@
                   foreach ($produk as $key => $value) { ?>
                     <tr>
                       <td class="text-center"><?= $no++; ?></td>
-                      <td class="text-center"><?= $value->nama_produk ?></td>
+                      <td><?= $value->nama_produk ?>
+                      <br>
+                            Berat : <?= $value->berat ?></td> Gr
                       <td class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar)?>" width="120px"></td>
                       <td class="text-center"><?= $value->keterangan ?></td>
                       <td class="text-center"><?= $value->nama_kategori ?></td>
                       <td class="text-center"><?= $value->stok?></td>
-                      <td class="text-center"><?= $value->berat ?></td>
+                   
                       <td class="text-center"> Rp.<?= number_format($value->harga,0) ?></td>
                       <td class="text-center py=0 ">
                       <div class="btn-group btn-group-sm">
