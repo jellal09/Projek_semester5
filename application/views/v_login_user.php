@@ -28,7 +28,7 @@
     <div class="card-body login-card-body">
      <p class="login-box-msg"> Silahkan Login</p>
       <?= $this->session->flashdata('error');?>
-      <?= $this->session->flashdata('pesan');?>
+     
     <?php
      echo form_open('auth/login_user')
     ?>

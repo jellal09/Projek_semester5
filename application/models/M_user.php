@@ -19,6 +19,7 @@ class M_user extends CI_Model
     }
     //ubah pwd pada admin
     public function ubahpwd ($data)
+    
     {
         $this->db->where('id_user',$data['id_user']);
         $this->db->update('user',$data);

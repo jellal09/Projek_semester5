@@ -12,24 +12,23 @@
               <!-- /.card-body -->
              
               <div class="card-body">
+              <?= $this->session->flashdata('pesan');?>
               <?php foreach ($user as $key => $value) { ?>
               <?php
                 echo form_open('ubahpwd/pwd/'.$value->id_user)?>
-             
-                
-             
+              
                 <div class="col-md-12">
 
                 <div class="form-group">
                       <label for="exampleInputEmail1">Password Baru</label>
-                      <input type="password" class="form-control" id="password"  name="password" placeholder="Masukkan password baru anda" required>
+                      <input type="password" class="form-control" id="password"  name="password" placeholder="Masukkan password baru anda"  value="<?= set_value('password'); ?>">
                       <?= form_error('password', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                       <label for="exampleInputPassword1">Konfirmasi password</label>
-                      <input type="password" class="form-control" id="password2"  name="password2" placeholder="konfirmasi password" required>
+                      <input type="password" class="form-control" id="password2"  name="password2" placeholder="konfirmasi password" value="<?= set_value('password2'); ?>">
                       <?= form_error('password2', '<small class="text-danger pl-2">', '</small>');  ?>
-                      </div>-->
+                      </div>
             
               </div>
               </div>
@@ -37,14 +36,15 @@
             <div class="modal-footer Right-content-between">
               
               <button type="submit" class="btn btn-primary">Simpan</button>
+            
               <?php
                 echo form_close();?>
             </div>
         
 
           </div>   </div>
-        
           <?php } ?>
+         
         <!--end layout-->
      
               
