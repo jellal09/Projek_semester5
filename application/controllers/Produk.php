@@ -118,6 +118,12 @@ class Produk extends CI_Controller {
         );
         $this->load->view('layout/v_wrapper_admin', $data, FALSE);  
        }else{
+           //hapus gambar
+        $produk  = $this->m_produk->get_data($id_produk);
+        if( $produk->gambar !=""){
+            unlink('./assets/gambar/'.$produk->gambar);
+        }//end hapus gambar
+        
         $upload_data    = array('uploads'=>$this->upload->data());
         $config['image_library']    = 'gd2';
         $config['source_image']    ='./assets/gambar/'. $upload_data['uploads']['file_name'];
