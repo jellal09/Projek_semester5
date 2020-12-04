@@ -10,7 +10,7 @@
               <div class="col-12 product-image-thumbs">
                 <div class="product-image-thumb active"><img src="<?= base_url('assets/gambar/' . $produk->gambar) ?>" alt="Product Image"></div>
                 <?php foreach ($gambar as $key => $value) { ?>
-                  <div class="product-image-thumb" ><img src="<?= base_url('assets/gambarproduk/' . $value->gambar) ?>" alt="Product Image"></div>
+                  <div class="product-image-thumb" ><img src="<?= base_url('assets/detail_gambar/' . $value->gambar) ?>" alt="Product Image"></div>
                 <?php } ?>
                 
 
@@ -19,9 +19,13 @@
             <div class="col-12 col-sm-6">
               <h3 class="my-3"><?= $produk->nama_produk ?></h3>
               <hr>
+              <p>Stok : <?= $produk->stok ?></p>
+
+              <hr>
               <p><?= $produk->keterangan ?></p>
 
               <hr>
+
 
               <div class="bg-gray py-2 px-3 mt-4">
                 <h2 class="mb-0">
@@ -75,8 +79,8 @@
       <!-- /.card -->
 
 <!-- SCRIPT -->
-<script src="<?= base_url() ?>templates/plugins/sweetalert2/sweetalert2.min.js"></script>
-<script src="<?= base_url() ?>/templates/dist/js/demo.js"></script>
+<script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?= base_url() ?>/template/dist/js/demo.js"></script>
 <script type="text/javascript">
   $(function() {
     const Toast = Swal.mixin({

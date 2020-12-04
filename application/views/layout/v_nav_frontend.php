@@ -48,7 +48,7 @@
         <li class="nav-item">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <span class="brand-text font-weight-light">Pelanggan</span>
-            <img src="<?= base_url() ?>templates/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <div class="dropdown-divider"></div>

@@ -56,12 +56,12 @@
 
                   <div class="col-sm-6">
                     <div class="text-right">
-                    <a href="#" class="btn btn-sm btn-success">
+                    <a href="<?= base_url('home/detail_produk/' . $value->id_produk) ?>" class="btn btn-sm btn-success">
                       <i class="fas fa-eye"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-primary">
+                    <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
                       <i class="fas fa-cart-plus"></i> Beli
-                    </a>
+                    </button>
                     </div>
                   </div>
                   </div>                
