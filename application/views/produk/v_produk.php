@@ -28,28 +28,27 @@
                  </thead>
                 <!--body-->   
                 <tbody>
-                  <?php $no = 1;
-                  foreach ($produk as $key => $value) { ?>
-                    <tr>
-                      <td class="text-center"><?= $no++; ?></td>
-                      <td><?= $value->nama_produk ?>
-                      <br>
-                            Berat : <?= $value->berat ?></td> Gr
-                      <td class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar)?>" width="120px"></td>
-                      <td class="text-center"><?= $value->keterangan ?></td>
-                      <td class="text-center"><?= $value->nama_kategori ?></td>
-                      <td class="text-center"><?= $value->stok?></td>
-                   
-                      <td class="text-center"> Rp.<?= number_format($value->harga,0) ?></td>
-                      <td class="text-center py=0 ">
-                      <div class="btn-group btn-group-sm">
-                      <a href="<?= base_url('produk/edit/'.$value->id_produk)?>" class="btn btn-warning btn-sm" ><i class="fa fa-edit"></i></a>
-                      <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?=$value->id_produk?>"><i class="fas fa-trash"></i></button>
-                      </div>
-                      </td>
-                    </tr>
-                    <?php } ?>
-                  </tbody>
+                <?php $no = 1;
+                        foreach ($produk as $key => $value) { ?>
+                        <tr>
+                            <td class="text-center"><?= $no++; ?></td>
+                            <td><?= $value->nama_produk ?><br>
+                            Berat : <?= $value->berat ?> Gr
+                            </td>
+                            <td class="text-center"><?= $value->nama_kategori ?></td>
+                            <td class="text-center"><?= $value->keterangan?></td>
+                            <td  class="text-center">Rp. <?= number_format($value->harga, 0)?></td>
+                            <td  class="text-center"><?= $value->stok ?></td>
+                            <td  class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar) ?>" width="120px"></td>
+                           
+                            
+                            <td  class="text-center">
+                                <a href="<?= base_url('barang/edit/'. $value->id_produk) ?>" class="btn btn-warning btn-sm" ><i class="fa fa-edit"></i></a>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_produk?>"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                         <?php } ?>
+                    </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
