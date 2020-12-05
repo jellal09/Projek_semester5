@@ -26,7 +26,7 @@ class Pelanggan extends CI_Controller {
                 'title'  => 'Login Pelanggan',
                 'isi'    => 'v_login_pelanggan',
             );
-            $this->load->view('layout/v_v_wrapper_frontend_frontend', $data, FALSE);
+            $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
         }else{
             //validasi sukses
             $this->_login();
@@ -372,7 +372,8 @@ class Pelanggan extends CI_Controller {
         $valid->set_rules('current_password', 'Password', 'required|trim',
             array( 'required'   => '%s harus diisi'));
         $valid->set_rules('password1', 'Password Baru', 'required|trim|min_length[8]|matches[password2]',
-        array( 'matches'    => '%s Password Tidak Sama'));
+        array( 'matches'    => '%s Password Tidak Sama',
+               'min_length' => '%s Password Minimal 8 Karakter'));
         $valid->set_rules('password2', 'Ulangi Password',  'required|trim|min_length[8]|matches[password1]');
 
         if($valid->run() == FALSE){
