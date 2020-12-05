@@ -42,34 +42,36 @@
         </ul>
       </div>
 
-      <!-- Right navbar links -->
-      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <span class="brand-text font-weight-light">Pelanggan</span>
-            <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+    
+<!-- Right navbar links -->
+<ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+<li class="nav-item">
+    <?php if ($this->session->userdata('email')=='') { ?>
+        <a class="nav-link" href="<?= base_url('pelanggan') ?>">
+        <span class="brand-text font-weight-light">Login </span>
+        <img src="<?= base_url() ?>assets/gambar/bajua4.jpg" alt="User Avatar" class="brand-image img-circle elevation-2"
+        style="opacity: .5">
+        </a>
+    <?php }else{ ?>
+        <a class="nav-link" data-toggle="dropdown" href="#">
+        <span class="brand-text font-weight-light"><?= $this->session->userdata('nama_pelanggan') ?> </span>
+        <img src="<?= base_url('assets/foto/'. $this->session->userdata('foto')) ?>" alt="User Avatar" class="brand-image img-circle elevation-2"
+        style="opacity: .5">
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
+            <a href="<?= base_url('pelanggan/akun') ?>" class="dropdown-item">
+                <i class="fas fa-user-alt mr-2"></i> Akun Saya
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
+            <a href="<?= base_url('pesanan_saya') ?>" class="dropdown-item">
+            <i class="fas fa-shopping-bag mr-2"></i> Pesanan Saya
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>
+            <a href="<?= base_url('pelanggan/logout') ?>" class="dropdown-item dropdown-footer">Log Out</a>
+        </div>
+    <?php } ?>
+</li>
 
         <?php 
         $keranjang = $this->cart->contents();
