@@ -16,11 +16,11 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Produk</th>
-                  <th>Gambar</th>
-                  <th>Deskripsi Produk</th>
                   <th>Kategori</th>
+                  <th>Deskripsi Produk</th>
                   <th>Stok</th>
                   <th>Harga</th>
+                  <th>Gambar</th>
                   <th>Action</th>
                   
                   
@@ -36,10 +36,11 @@
                             Berat : <?= $value->berat ?> Gr
                             </td>
                             <td class="text-center"><?= $value->nama_kategori ?></td>
-                            <td class="text-center"><?= $value->keterangan?></td>
-                            <td  class="text-center">Rp. <?= number_format($value->harga, 0)?></td>
+                            <td class="text-center"><?= $value->keterangan?></td>  
                             <td  class="text-center"><?= $value->stok ?></td>
+                            <td  class="text-center">Rp. <?= number_format($value->harga, 0)?></td>
                             <td  class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar) ?>" width="120px"></td>
+                         
                            
                             
                             <td  class="text-center">
