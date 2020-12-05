@@ -11,128 +11,245 @@ class Pelanggan extends CI_Controller {
         $this->load->model('m_auth');
                
     }
+    public function index()
+    {
+        if ($this->session->userdata('email')) {
+           redirect('home');
+        }
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', array(
+            'required' => '%s Email Harus Diisi !'));
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', array(
+            'required' => '%s Password Harus Diisi !'));
+
+        if($this->form_validation->run() == FALSE){
+            $data = array (
+                'title'  => 'Login Pelanggan',
+                'isi'    => 'v_login_pelanggan',
+            );
+            $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+        }else{
+            //validasi sukses
+            $this->_login();
+        }
+    }
+    private function _login()
+    {
+        $email      = $this->input->post('email');
+        $password   = $this->input->post('password');
+
+        $pelanggan = $this->db->get_where('pelanggan', ['email' => $email])->row_array();
+        //jika usernya ada
+        if($pelanggan) {
+           //jika usernya aktif
+           if($pelanggan['is_active'] == 1){
+               if (password_verify($password, $pelanggan['password'])) {
+                  $data = [
+                      'id_pelanggan'    => $pelanggan['id_pelanggan'],
+                      'email'           => $pelanggan['email'],
+                      'nama_pelanggan'  => $pelanggan['nama_pelanggan'],
+                      'no_telepon'      => $pelanggan['no_telepon'],
+                      'foto'            => $pelanggan['foto'],
+                  ];
+                  $this->session->set_userdata($data);
+                  redirect('home');
+               }else {
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Password Salah</div>'); 
+                redirect('pelanggan');
+               }               
+           }else{
+             $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Email Belum Diaktivasi</div>'); 
+             redirect('pelanggan');
+           }
+       }else{
+        $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Email Tidak Terdaftar</div>'); 
+        redirect('pelanggan');
+       }
+    }
     public function register()
     {
-        $this->form_validation->set_rules('nama_pelanggan', 'Full Name', 'required',
-            array('required'  => '%s Harus Diisi',
-                  'is_unique' => '%s Email Sudah Terdaftar !'));
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[pelanggan.email]',
-            array('required' => '%s Harus Diisi'));
-        $this->form_validation->set_rules('password', 'Password', 'required',
-            array('required' => '%s Harus Diisi'));
-        $this->form_validation->set_rules('ulangi', 'Ulangi Password','required|matches[password]',
-            array('required' => '%s Harus Diisi',
-                  'matches'  => '%s Password Salah !'));
-        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required',
-            array('required' => '%s Harus Diisi'));
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required',
-            array('required' => '%s Harus Diisi'));    
+        if ($this->session->userdata('email')) {
+            redirect('home');
+        }
+        $this->form_validation->set_rules('nama_pelanggan', 'Full Name', 'required|trim',
+        array('required'  => 'Nama Lengkap Harus Diisi'));
+        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[pelanggan.email]|trim|valid_email',
+        array('required'  => 'Email Harus Diisi',
+              'is_unique' => 'Email Sudah Terdaftar'));
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[ulangi]',
+        array('required'  => 'Password Harus Diisi',
+              'min_length' => 'Isi Password Minimal 8 Karakter '));
+        $this->form_validation->set_rules('ulangi', 'Ulangi Password','required|trim|matches[password]',
+        array('required'  => 'Ulangi Password'));
+        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|max_length[13]', 
+        array('required'   => 'Nomer Telepon Harus Diisi',
+              'min_length' => 'Isi Nomer Telepon/HP Maksimal 13 Karakter'));
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim',
+        array('required'  => 'Alamat Lengkap Harus Diisi'));  
 
         if($this->form_validation->run() == FALSE){
         $data = array (
-            'title'  => 'Register',
-            'isi'    => 'v_register',
+            'title'  => 'Register Pelanggan',
+            'isi'    => 'register',
         );
-        $this->load->view('layout/wrapper', $data, FALSE);
-        }else{
-        $data = array(  'nama_pelanggan'  => $this->input->post('nama_pelanggan'),          
-                        'email'           => $this->input->post('email'),
-                        'password'        => $this->input->post('password'),
-                        'no_telepon'      => $this->input->post('no_telepon'),
-                        'alamat'          => $this->input->post('alamat'),             
-        );
-        $this->m_pelanggan->register($data);
-        $this->session->set_flashdata('pesan', 'Register Berhasil !');
-        redirect('pelanggan/register');    
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+         }else{   
+         $email = $this->input->post('email', true);
+         $data = array(  'nama_pelanggan'  => htmlspecialchars($this->input->post('nama_pelanggan', true)),          
+                         'email'           => htmlspecialchars($email),
+                         'password'        => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                         'no_telepon'      => $this->input->post('no_telepon'),
+                         'alamat'          => $this->input->post('alamat'), 
+                         'foto'            => 'user.png',     
+                         'is_active'       => 0,
+         );
+         //siapkan token
+         $token = base64_encode(random_bytes(32));
+         $user_token = [
+            'email'  => $email,
+            'token'  => $token,
+            'date_created' => time()
+         ];
+         $this->m_pelanggan->register($data);
+         $this->db->insert('pelanggan_token', $user_token);
+         $this->_sendEmail($token, 'verify');
+         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Register Berhasil ! Silahkan Aktivasi Akun Anda</div>');
+         redirect('pelanggan');    
         }
-    }
-    
-    public function login()
+    }  
+    private function _sendEmail($token, $type)
     {
-        $this->form_validation->set_rules('email', 'Email', 'required', array(
-            'required' => '%s Harus Diisi !'
-        ));
-        $this->form_validation->set_rules('password', 'Password', 'required', array(
-            'required' => '%s Harus Diisi !'
-        ));
-
-        if($this->form_validation->run()== TRUE){
-            $email      = $this->input->post('email');
-            $password   = $this->input->post('password');
-            $this->pelanggan_login->login($email,$password);
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host'=> 'ssl://smtp.googlemail.com',
+            'smtp_user'=> 'tokoistana8@gmail.com',
+            'smtp_pass'=> 'istana2810',
+            'smtp_port'=> 465,
+            'mailtype' => 'html',
+            'charset'  => 'utf-8',
+            'newline'  => "\r\n"
+        ];
+        $this->load->library('email', $config);
+        $this->email->from('tokoistana8@gmail.com', 'Toko Istana');
+        $this->email->to($this->input->post('email'));
+        if ($type == 'verify') {
+            $this->email->subject('Verifikasi Akun');
+            $this->email->message('Klik link ini untuk memverifikasi akun Anda : <a href="'. base_url() . 'pelanggan/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Aktifasi</a>'); 
+        } else if ($type == 'forgot') {
+            $this->email->subject('Reset Password');
+            $this->email->message('Klik link ini untuk mereset password Anda : <a href="'. base_url() . 'pelanggan/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>'); 
         }
-       
-        $data = array (
-            'title'  => 'Login Pelanggan',
-            'isi'    => 'v_login_pelanggan',
-        );
-        $this->load->view('layout/wrapper', $data, FALSE);
+     
+
+        if($this->email->send()){
+            return true;
+        }else{
+             echo $this->email->print_debugger();
+             die;
+        }
+        
+    }  
+    public function verify()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $pelanggan = $this->db->get_where('pelanggan', ['email' => $email])->row_array();
+
+        if ($pelanggan) {
+            $pelanggan_token = $this->db->get_where('pelanggan_token', ['token' => $token])->row_array();
+            if ($pelanggan_token) {
+                if (time() - $pelanggan_token['date_created'] < (60*60*24)) {
+                   $this->db->set('is_active', 1);
+                   $this->db->where('email', $email);           
+                   $this->db->update('pelanggan');
+                   $this->db->delete('pelanggan_token', ['email' => $email]);
+                   $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">'. $email .' Sudah Diaktivasi</div>'); 
+                   redirect('pelanggan');
+
+                }else {
+                    $this->db->delete('pelanggan', ['email' => $email]);
+                    $this->db->delete('pelanggan_token', ['email' => $email]);
+
+                    $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Token Kadaluarsa</div>'); 
+                    redirect('pelanggan');
+                }
+            }else{
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Aktifasi Akun Gagal ! Token Invalid</div>'); 
+                redirect('pelanggan');
+            }
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Aktifasi Akun Gagal ! Email Salah</div>'); 
+            redirect('pelanggan');
+        }
     }
-    
     public function logout()
     {
         $this->pelanggan_login->logout();
+        $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Anda Sudah Logout</div>'); 
+        redirect('pelanggan');
     }
     public function akun()
     {
+        // $data['pelanggan'] = $this->db->get_where('pelanggan', ['email' => $this->session->userdata('email')])->row_array();
+        // echo 'Selamat Datang' . $data['pelanggan']['nama_pelanggan'];
         $id_pelanggan = $this->session->userdata('id_pelanggan');
 
         //proteksi halaman
         $this->pelanggan_login->proteksi_halaman();
 
-        $pelanggan 	  = $this->m_pelanggan->detail($id_pelanggan);
+        $pelanggan    = $this->m_pelanggan->detail($id_pelanggan);
         
-		// validasi input
-		$valid = $this->form_validation;
+        //validasi input
+        $valid = $this->form_validation;
 
-		$valid->set_rules('nama_pelanggan', 'Nama lengkap', 'required',
-			array( 'required'	=> '%s harus diisi'));
-		$valid->set_rules('alamat', 'Alamat', 'required',
-			array( 'required'	=> '%s harus diisi'));
-		$valid->set_rules('no_telepon', 'no_telepon', 'required',
-			array( 'required'	=> '%s harus diisi'));
+        $valid->set_rules('nama_pelanggan', 'Nama lengkap', 'required',
+            array( 'required'   => '%s harus diisi'));
+        $valid->set_rules('alamat', 'Alamat', 'required',
+            array( 'required'   => '%s harus diisi'));
+        $valid->set_rules('no_telepon', 'no_telepon', 'required',
+            array( 'required'   => '%s harus diisi'));
 
-		if ($valid->run()===FALSE) {
+        if ($valid->run()===FALSE) {
 
-		$data = array(		'title'				=> 'Profile Saya',		
-							'pelanggan'			=> $pelanggan,
-							'isi'				=> 'v_akun_saya'
-							);
-		//end validasi
+        $data = array(      'title'             => 'Profile Saya',      
+                            'pelanggan'         => $pelanggan,
+                            'isi'               => 'v_akun_saya'
+                            );
+        //end validasi
 
-		$this->load->view('layout/wrapper', $data, FALSE);
-		//masuk databse
-		}else{
-			$i= $this->input;
-			//kalau password lebih dari 6 karakter maka ubah password
-			if (strlen($i->post('password')) >= 6 ) {
-		
-			$data= array(	'id_pelanggan'		=> $id_pelanggan,
-							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
-							'password' 			=> SHA1($i->post('password')),
-							'no_telepon' 		=> $i->post('no_telepon'),
-							'alamat' 			=> $i->post('alamat')
-							);
-			//jjika tidak maka password tetap
-		}else{
-			$data= array(	'id_pelanggan'		=> $id_pelanggan,
-							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
-							'no_telepon' 		=> $i->post('no_telepon'),
-							'alamat' 			=> $i->post('alamat')
-							);
-		}
-			$this->m_pelanggan->edit($data);
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+        //masuk databse
+        }else{
+            $i= $this->input;
+            //kalau password lebih dari 6 karakter maka ubah password
+            if (strlen($i->post('password')) >= 6 ) {
+        
+            $data= array(   'id_pelanggan'      => $id_pelanggan,
+                            'nama_pelanggan'    => $i->post('nama_pelanggan'),
+                            'password'          => SHA1($i->post('password')),
+                            'no_telepon'        => $i->post('no_telepon'),
+                            'alamat'            => $i->post('alamat')
+                            );
+            //jjika tidak maka password tetap
+        }else{
+            $data= array(   'id_pelanggan'      => $id_pelanggan,
+                            'nama_pelanggan'    => $i->post('nama_pelanggan'),
+                            'no_telepon'        => $i->post('no_telepon'),
+                            'alamat'            => $i->post('alamat')
+                            );
+        }
+            $this->m_pelanggan->edit($data);
             $this->session->set_flashdata('sukses', 'Update Profie Berhasil');
-			redirect(base_url('pelanggan/akun'),'refresh');		
-		}
+            redirect(base_url('pelanggan/akun'),'refresh');     
+        }
     }
     public function edit_foto()
     {
         $id_pelanggan = $this->session->userdata('id_pelanggan');
 
         //proteksi halaman
-        	// validasi input
-        $pelanggan 	  = $this->m_pelanggan->detail($id_pelanggan);
+            // validasi input
+        $pelanggan    = $this->m_pelanggan->detail($id_pelanggan);
 
         $config['upload_path'] = './assets/foto/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -146,9 +263,9 @@ class Pelanggan extends CI_Controller {
                         'error_upload'   => $this->upload->display_errors(),
                         'isi'            => 'v_edit_foto_profil',
         );
-        $this->load->view('layout/wrapper', $data, FALSE);
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
         }else{
-        $upload_data    = array(  'uploads' => $this->upload->data());
+        $upload_data  = array(  'uploads' => $this->upload->data());
                         $config['image_library'] = 'gd2';
                         $config['source_image'] = './assets/foto/' . $upload_data['uploads']['file_name'];
         $this->load->library('image_lib', $config);
@@ -158,8 +275,137 @@ class Pelanggan extends CI_Controller {
         $this->m_pelanggan->edit($data);
         $this->session->set_flashdata('pesan', 'Gambar Berhasil Ditambahkan');
         redirect('pelanggan/edit_foto');    
-        $this->load->view('layout/wrapper', $data, FALSE);
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+        }   
+    } 
+    public function lupaPassword()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(     'title'              => 'Lupa Password',     
+                                'isi'               => 'v_lupa_password'
+        );
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+        } else {
+            $email  = $this->input->post('email');
+            $pelanggan = $this->db->get_where('pelanggan', ['email' => $email, 'is_active' => 1])->row_array();
+            
+            if ($pelanggan) {
+                $token = base64_encode(random_bytes(32));
+                $pelanggan_token =[
+                    'email'     => $email,
+                    'token'     => $token,
+                    'date_created' => time()
+                ];
+                $this->db->insert('pelanggan_token', $pelanggan_token);
+                $this->_sendEmail($token, 'forgot');
+
+                $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Cek Email Anda</div>'); 
+                redirect('pelanggan');
+            }else{
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Email Tidak Terdaftar Atau Belum Diaktivasi</div>'); 
+                redirect('pelanggan/lupaPassword');
+            }
+        }
+       
     }
+    public function resetPassword()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $pelanggan = $this->db->get_where('pelanggan', ['email' => $email])->row_array();
+
+        if ($pelanggan) {
+
+           $pelanggan_token = $this->db->get_where('pelanggan_token', ['token' => $token])->row_array();
+
+           if ($pelanggan_token) {
+              $this->session->set_userdata('reset_email', $email);
+              $this->ubahPassword();
+           }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Reset Password Gagal. Token Salah!</div>'); 
+            redirect('pelanggan');
+           }
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Reset Password Gagal. Email Salah!</div>'); 
+                redirect('pelanggan');
+        }
+    }
+    public function ubahPassword()
+    {
+        if (!$this->session->userdata('reset_email')) {      
+           redirect('pelanggan');
+        }
+
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[6]|matches[password1]');
+
+       if($this->form_validation->run() == FALSE){
+           $data = array(  'title'              => 'Ubah Password',     
+                           'isi'                => 'v_reset_password'
+        );
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+    }else{
+        $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
+        $email    = $this->session->userdata('reset_email');
+        
+        $this->db->set('password', $password);    
+        $this->db->where('email', $email);
+        $this->db->update('pelanggan');
+        
+        $this->session->unset_userdata('reset_email');
+
+        $this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Password Berhasil Diubah ! Silahkan Login</div>'); 
+        redirect('pelanggan');
+            
+    }
+    }
+    public function ubah_password()
+    {
+        // $id_pelanggan = $this->session->userdata('id_pelanggan');
+        //proteksi halaman
+        $pelanggan['pelanggan'] = $this->db->get_where('pelanggan', ['email' => $this->session->userdata('email')])->row_array();
+            // validasi input
+        $valid = $this->form_validation;
+
+        $valid->set_rules('current_password', 'Password', 'required|trim',
+            array( 'required'   => '%s harus diisi'));
+        $valid->set_rules('password1', 'Password Baru', 'required|trim|min_length[8]|matches[password2]',
+        array( 'matches'    => '%s Password Tidak Sama',
+               'min_length' => '%s Password Minimal 8 Karakter'));
+        $valid->set_rules('password2', 'Ulangi Password',  'required|trim|min_length[8]|matches[password1]');
+
+        if($valid->run() == FALSE){
+            $data = array (
+                'title'          => 'Ubah Password',
+                'pelanggan'      => $pelanggan,
+                'isi'            => 'ubah_password',
+            );
+            $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+        }else{
+            $current_password  = $this->input->post('current_password');
+            $new_password      = $this->input->post('password1');
+            if (!password_verify($current_password, $pelanggan['pelanggan']['password'])) {
+                $this->session->set_flashdata('sukses','<div class="alert alert-danger" role="alert">Password Salah !</div>'); 
+                redirect('pelanggan/ubah_password');    
+            } else {
+                if ($current_password == $new_password) {
+                    $this->session->set_flashdata('sukses','<div class="alert alert-danger" role="alert">Password Baru Tidak Boleh Sama !</div>'); 
+                    redirect('pelanggan/ubah_password');    
+                }else{
+                    //password valid
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    $this->db->set('password', $password_hash);
+                    $this->db->where('email', $this->session->userdata('email'));
+                    $this->db->update('pelanggan');
+
+                    $this->session->set_flashdata('sukses','<div class="alert alert-success" role="alert">Password telah Diubah !</div>'); 
+                    redirect('pelanggan/ubah_password');    
+                }
+            }
+        }
 }
 }
 

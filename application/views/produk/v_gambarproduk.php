@@ -29,7 +29,7 @@
                     <td class="text-center"><?= $no++; ?></td>
                     <td class="text-center"><?= $value->nama_produk?></td>
                     <td class="text-center"><img src="<?=base_url('assets/gambar/'.$value->gambar)?>" width="120px"></td>
-                    <td class="text-center"><span class="badge bg-primary"><h6><?= $value->total_gambar?></h6></span></td>
+                    <td class="text-center"><h6><?= $value->total_gambar?></h6></td>
                     <td class="text-center">
                       <div class="btn-group btn-group-sm">
                       <a href="<?= base_url('gambar_produk/add/'.$value->id_produk)?>" type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus"></i> Tambah Gambar </a>

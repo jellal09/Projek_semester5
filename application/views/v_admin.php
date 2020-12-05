@@ -1,17 +1,67 @@
+<div class="col-lg-12">
+<div class="row">
+<div class="col-lg-3 col-6">
+<!-- small box -->
+<div class="small-box bg-info">
+    <div class="inner">
+    <h3><?= $pesanan ?></h3>
 
-          <div class="col-lg-12">
-            <div class="card">
-            </div>
+    <p>Pesanan Saya</p>
+    </div>
+    <div class="icon">
+    <i class="nav-icon fas fa-calculator"></i>
+    </div>
+    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<!-- small box -->
+<div class="small-box bg-success">
+    <div class="inner">
+    <h3><?= $total_barang ?></h3>
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+    <p>Produk</p>
+    </div>
+    <div class="icon">
+    <i class=" fas fa-clipboard-list"></i>
+    </div>
+    <a href="<?= base_url('produk') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<!-- small box -->
+<div class="small-box bg-warning">
+    <div class="inner">
+    <h3><?= $total_kategori ?></h3>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-              </div>
-            </div>
-          </div>
-         <!-- /.card -->
+    <p>Kategori</p>
+    </div>
+    <div class="icon">
+    <i class=" fas fa-clipboard-list"></i>
+    </div>
+    <a href="<?= base_url('kategori') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<!-- small box -->
+<div class="small-box bg-danger">
+    <div class="inner">
+    <h3><?= $total_member ?></h3>
+
+    <p>Member</p>
+    </div>
+    <div class="icon">
+    <i class="fas fa-users"></i>
+    </div>
+    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>
+</div>
+</div>
+<!-- /.col-md-6 -->
+<!-- /.col-md-6 -->
+</div>
+<!-- /.row -->
+</div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+</div>

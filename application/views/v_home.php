@@ -82,6 +82,9 @@
 		</div>
 	</div>
 </div>
+</div>
+  
+</div>
 
 <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript">
