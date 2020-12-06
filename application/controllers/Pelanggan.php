@@ -188,7 +188,7 @@ class Pelanggan extends CI_Controller {
         $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Anda Sudah Logout</div>'); 
         redirect('pelanggan');
     }
-    public function akun()
+     public function akun()
     {
         // $data['pelanggan'] = $this->db->get_where('pelanggan', ['email' => $this->session->userdata('email')])->row_array();
         // echo 'Selamat Datang' . $data['pelanggan']['nama_pelanggan'];
@@ -198,6 +198,7 @@ class Pelanggan extends CI_Controller {
         $this->pelanggan_login->proteksi_halaman();
 
         $pelanggan    = $this->m_pelanggan->detail($id_pelanggan);
+        $data['pelanggan'] = $this->db->get_where('pelanggan', ['email' => $this->session->userdata('email')])->row_array();
         
         //validasi input
         $valid = $this->form_validation;
@@ -209,75 +210,53 @@ class Pelanggan extends CI_Controller {
         $valid->set_rules('no_telepon', 'no_telepon', 'required',
             array( 'required'   => '%s harus diisi'));
 
-        if ($valid->run()===FALSE) {
+        if ($valid->run() == FALSE) {
 
         $data = array(      'title'             => 'Profile Saya',      
                             'pelanggan'         => $pelanggan,
                             'isi'               => 'v_akun_saya'
-                            );
+        );
         //end validasi
 
         $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
         //masuk databse
         }else{
             $i= $this->input;
-            //kalau password lebih dari 6 karakter maka ubah password
-            if (strlen($i->post('password')) >= 6 ) {
-        
-            $data= array(   'id_pelanggan'      => $id_pelanggan,
-                            'nama_pelanggan'    => $i->post('nama_pelanggan'),
-                            'password'          => SHA1($i->post('password')),
-                            'no_telepon'        => $i->post('no_telepon'),
-                            'alamat'            => $i->post('alamat')
-                            );
-            //jjika tidak maka password tetap
-        }else{
             $data= array(   'id_pelanggan'      => $id_pelanggan,
                             'nama_pelanggan'    => $i->post('nama_pelanggan'),
                             'no_telepon'        => $i->post('no_telepon'),
                             'alamat'            => $i->post('alamat')
                             );
-        }
+            //jika ada gambar di upload 
+            $upload_image = $_FILES['foto']['name'];
+            if($upload_image){
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']      = '2048';
+                $config['upload_path']   = './assets/foto/';                
+                $this->upload->initialize($config);
+                if($this->upload->do_upload('foto')) {
+                    // $old_image = $data['pelanggan']['foto'];
+                    // if ($old_image != 'user.png') {
+                    //    unlink(FCPATH . 'assets/foto/' . $old_image );
+                    // }
+                    $new_image = $this->upload->data('file_name');
+                    // $upload_data  = array(  'uploads' => $this->upload->data());
+                    // $config['image_library'] = 'gd2';
+                    // $config['source_image'] = './assets/foto/' . $upload_data['uploads']['file_name'];
+                    // $this->load->library('image_lib', $config);
+                    // $data = array(  'id_pelanggan'   => $id_pelanggan,
+                    //                 'foto'           => $upload_data['uploads']['file_name'],
+                    // );
+                    $this->db->set('foto', $new_image);
+                }else{
+                    echo $this->upload->display_errors();
+                }
+            }
             $this->m_pelanggan->edit($data);
-            $this->session->set_flashdata('sukses', 'Update Profie Berhasil');
+            $this->session->set_flashdata('message', 'Update Profile Berhasil');
             redirect(base_url('pelanggan/akun'),'refresh');     
         }
     }
-    public function edit_foto()
-    {
-        $id_pelanggan = $this->session->userdata('id_pelanggan');
-
-        //proteksi halaman
-            // validasi input
-        $pelanggan    = $this->m_pelanggan->detail($id_pelanggan);
-
-        $config['upload_path'] = './assets/foto/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size']     = '2000';
-        $this->upload->initialize($config);
-        $field_name = "gambar";
-        if(!$this->upload->do_upload($field_name)) {
-        $data = array (
-                        'title'          => 'Profil',
-                        'pelanggan'      => $pelanggan,
-                        'error_upload'   => $this->upload->display_errors(),
-                        'isi'            => 'v_edit_foto_profil',
-        );
-        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
-        }else{
-        $upload_data  = array(  'uploads' => $this->upload->data());
-                        $config['image_library'] = 'gd2';
-                        $config['source_image'] = './assets/foto/' . $upload_data['uploads']['file_name'];
-        $this->load->library('image_lib', $config);
-        $data = array(  'id_pelanggan'   => $id_pelanggan,
-                        'gambar'         => $upload_data['uploads']['file_name'],
-        );
-        $this->m_pelanggan->edit($data);
-        $this->session->set_flashdata('pesan', 'Gambar Berhasil Ditambahkan');
-        redirect('pelanggan/edit_foto');    
-        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
-        }   
-    } 
     public function lupaPassword()
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');

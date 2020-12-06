@@ -49,7 +49,7 @@
     <?php if ($this->session->userdata('email')=='') { ?>
         <a class="nav-link" href="<?= base_url('pelanggan') ?>">
         <span class="brand-text font-weight-light">Login </span>
-        <img src="<?= base_url() ?>assets/gambar/bajua4.jpg" alt="User Avatar" class="brand-image img-circle elevation-2"
+        <img src="<?= base_url() ?>assets/foto/user.png" alt="User Avatar" class="brand-image img-circle elevation-2"
         style="opacity: .5">
         </a>
     <?php }else{ ?>
