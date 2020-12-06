@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 01:03 AM
+-- Generation Time: Dec 06, 2020 at 10:24 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -43,7 +43,7 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id_berita`, `jenis_berita`, `judul_berita`, `keterangan`, `gambar`, `tgl_post`, `tgl_update`) VALUES
-(1, 'Mix and Match OOTD', '5 Ide Mix and Match OOTD Colorful ala Selebgram', '5 Ide Mix and Match OOTD Colorful ala Selebgram', 'colorful4.jpg', '2020-11-25', '2020-11-25');
+(1, 'Mix and Match OOTD', '5 Ide Mix and Match OOTD ROK dan Jeans', '3 Ide Mix and Match OOTD ROK dan Jeans yaitu:\r\n1. Boleh coba pakai sweater dipadu rok warna krem, tampilan standout dengan sepatu boots hitam \r\n2. boleh coba pakai outer jaket parasut warna putih dipadu rok hitam\r\n3. Cocok dipakai ke acara formal dengan stelan blazer & rok warna coklat', 'colourfull.png', '2020-12-04', '2020-12-04');
 
 -- --------------------------------------------------------
 
@@ -53,9 +53,11 @@ INSERT INTO `berita` (`id_berita`, `jenis_berita`, `judul_berita`, `keterangan`,
 
 CREATE TABLE `detail_transaksi` (
   `id_detail_transaksi` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
   `no_order` varchar(15) DEFAULT NULL,
   `id_produk` int(11) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
+  `price` int(11) NOT NULL,
   `qty` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,24 +65,8 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data for table `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id_detail_transaksi`, `no_order`, `id_produk`, `name`, `qty`) VALUES
-(2, '20201113IS1QPBJ', 4, NULL, 1),
-(3, '20201113IS1QPBJ', 1, NULL, 2),
-(4, '20201113HDSMKNH', 4, NULL, 1),
-(5, '20201113VBBFZ67', 4, NULL, 1),
-(6, '20201113RJQOU7P', 5, NULL, 1),
-(7, '20201113RKJF0OM', 4, NULL, 2),
-(8, '20201114VFIVLSI', 4, NULL, 1),
-(9, '20201115SDEHNCA', 4, NULL, 1),
-(10, '20201115M7SBI2U', 5, NULL, 1),
-(11, '20201116IHKGBTP', 4, NULL, 1),
-(12, '20201117FDQGCP0', 4, NULL, 1),
-(13, '20201117LJI4N70', 1, NULL, 1),
-(14, '20201117JISNRGF', 1, 'Baju Anak Lucu', 1),
-(16, '20201117TBTEM6H', 4, 'set baju tidur wanita', 1),
-(17, '20201117J61JZBC', 4, 'set baju tidur wanita', 1),
-(18, '20201121ZD6FEVY', 6, 'Jaket children boy', 1),
-(19, '20201123X6SI1DZ', 5, 'baju set trendi', 1);
+INSERT INTO `detail_transaksi` (`id_detail_transaksi`, `id_transaksi`, `no_order`, `id_produk`, `name`, `price`, `qty`) VALUES
+(19, 20, '20201123X6SI1DZ', 1, 'baju set trendi', 150000, 1);
 
 --
 -- Triggers `detail_transaksi`
@@ -111,7 +97,8 @@ CREATE TABLE `gambar` (
 --
 
 INSERT INTO `gambar` (`id_gambar`, `id_produk`, `judul_gambar`, `gambar`) VALUES
-(1, 4, 'gambar2', 'bajutidur2.jpg');
+(2, 4, 'gambar2', 'bajutidur2.jpg'),
+(5, 4, 'ukuran', 'Ld_bajutidur.jpg');
 
 -- --------------------------------------------------------
 
@@ -212,8 +199,8 @@ CREATE TABLE `produk` (
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `id_kategori`, `harga`, `keterangan`, `gambar`, `stok`, `berat`) VALUES
 (1, 'Baju Anak Lucu', 7, 150000, 'cantik, bahan adem', 'bajuanak.jpg', 10, 300),
-(4, 'Setelan baju tidur wanita', 3, 155000, 'bahan kaos', 'bajutidur.jpg', 0, 500),
-(6, 'Jaket children boy', 7, 200000, 'bahan katun permium, adem, menyerap keringat', 'jaket.jpg', 9, 500);
+(4, 'Setelan baju tidur wanita', 4, 155000, 'bahan kaos', 'bajutidur.jpg', 0, 120),
+(7, 'Hijab Bergo Maryam', 7, 30000, 'bahan katun permium, adem, menyerap keringat', 'sevenseas_sevenseas_004_square_kotak-kotak_casual_premium_kemeja_wanita_full07_rlwte3w0.jpg', 9, 300);
 
 -- --------------------------------------------------------
 
@@ -260,7 +247,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id_konfigurasi`, `nama_web`, `email`, `telepon`, `alamat`, `facebook`, `instagram`, `deskripsi`, `logo`, `icon`) VALUES
-(1, 'Toko Istana', 'tokoistana@gmail.com', '08134567899', 'Banyuwangi', 'TokoIstana', 'TokoIstana', 'Toko istana adalah e-commerce yang bergerak pada bidang fashion trend masa kini', 'logo.jpg', 'icon.jpg');
+(1, 'Toko Istana', 'tokoistana@gmail.com', '081345678996', 'Banyuwangi, Jawa Timur', 'TokoIstana', 'TokoIstana', 'Toko istana adalah e-commerce yang bergerak pada bidang fashion trend masa kini', 'logo.png', 'icon.jpg');
 
 -- --------------------------------------------------------
 
@@ -270,11 +257,8 @@ INSERT INTO `setting` (`id_konfigurasi`, `nama_web`, `email`, `telepon`, `alamat
 
 CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
-  `id_detail_transaksi` int(11) NOT NULL,
   `id_pelanggan` int(11) DEFAULT NULL,
   `no_order` varchar(15) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `qty` int(11) NOT NULL,
   `tgl_transaksi` date DEFAULT NULL,
   `nama_pelanggan` varchar(30) DEFAULT NULL,
   `no_telepon` varchar(13) NOT NULL,
@@ -302,25 +286,8 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_detail_transaksi`, `id_pelanggan`, `no_order`, `name`, `qty`, `tgl_transaksi`, `nama_pelanggan`, `no_telepon`, `provinsi`, `kota`, `alamat`, `kode_pos`, `expedisi`, `paket`, `estimasi`, `ongkir`, `berat`, `grand_total`, `total_bayar`, `status_bayar`, `bukti_bayar`, `atas_nama`, `no_rek`, `nama_bank`, `status_order`, `no_resi`) VALUES
-(3, 0, 1, '20201113IS1QPBJ', NULL, 0, '2020-11-13', 'Elisa Qothrun Nada', '0991123333', 'Bangka Belitung', 'Bangka Selatan', 'wonosari, sumber kalong', '29012', 'jne', 'OKE', '4-7', 54000, 502, 455000, 509000, 1, 'buktibayar2.jpg', 'Candra', '2234-4553-5533-2233', 'BANK BRI', 1, NULL),
-(4, 0, 1, '20201113HDSMKNH', NULL, 0, '2020-11-13', 'Elisa Qothrun Nada', '0991123333', 'Jawa Timur', 'Banyuwangi', 'wonosari, sumber kalong', '12345', 'jne', 'CTC', '1-2', 6000, 500, 155000, 161000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(5, 0, 1, '20201113VBBFZ67', NULL, 0, '2020-11-13', 'Elisa Qothrun Nada', '0991123333', 'Kepulauan Riau', 'Batam', 'wonosari, sumber kalong', '1233', 'jne', 'OKE', '6-8', 38000, 500, 155000, 193000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(6, 0, 1, '20201113RJQOU7P', NULL, 0, '2020-11-13', 'Elisa Qothrun Nada', '0991123333', 'Bali', 'Bangli', 'bali', '11122', 'jne', 'OKE', '5-7', 16000, 500, 150000, 166000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(7, 0, 1, '20201113RKJF0OM', NULL, 0, '2020-11-13', 'elisa', '0991123333', 'Bangka Belitung', 'Bangka Barat', 'jember', '11', 'pos', 'Paket Kilat Khusus', '6-8 HARI', 48500, 1000, 310000, 358500, 1, NULL, NULL, NULL, NULL, 3, 'JP0923455'),
-(8, 0, 1, '20201114VFIVLSI', NULL, 0, '2020-11-14', 'Elisa Qothrun Nada', '0991123333', 'Bangka Belitung', 'Bangka Barat', 'wonosari, sumber kalong', '68282', 'pos', 'Paket Kilat Khusus', '6-8 HARI', 48500, 500, 155000, 203500, 1, 'buktibayar1.jpg', 'Candra', '2234-4553-5533-2233', 'BANK BRI', 3, 'JP0922881'),
-(9, 0, 1, '20201115SDEHNCA', NULL, 1, '2020-11-15', 'Elisa Qothrun Nada', '081230388446', 'Bangka Belitung', 'Bangka Barat', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '123444', 'jne', 'OKE', '4-7', 54000, 500, 155000, 209000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(10, 0, 1, '20201115M7SBI2U', NULL, 1, '2020-11-15', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Badung', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 150000, 166000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(11, 0, 1, '20201116IHKGBTP', NULL, 1, '2020-11-16', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Bangli', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 155000, 171000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(12, 0, 1, '20201117FDQGCP0', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Bangli', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 155000, 171000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(13, 0, 1, '20201117LJI4N70', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bangka Belitung', 'Bangka Tengah', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '4-7', 54000, 1, 150000, 204000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(14, 0, 1, '20201117JISNRGF', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Banten', 'Cilegon', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '12345', 'jne', 'OKE', '6-10', 20000, 1, 150000, 170000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(15, 0, 1, '20201117BLC5PX1', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Bangli', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 155000, 171000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(16, 0, 1, '20201117BLC5PX1', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Bangli', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 155000, 171000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(17, 0, 1, '20201117TBTEM6H', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Bangli', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'pos', 'Paket Kilat Khusus', '3-4 HARI', 25000, 500, 155000, 180000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(18, 0, 1, '20201117J61JZBC', NULL, 1, '2020-11-17', 'Elisa Qothrun Nada', '081230388446', 'Bali', 'Badung', 'wonosari, sumber kalong, bondowoso rt:002 rw:003', '29012', 'jne', 'OKE', '5-7', 16000, 500, 155000, 171000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(19, 0, 4, '20201121ZD6FEVY', NULL, 1, '2020-11-21', 'Zayn', '081230388445', 'Banten', 'Lebak', 'Girlington road, bradford, west yorkshire, BD8 9PA, United Kingdom', '29012', 'jne', 'OKE', '4-6', 24000, 500, 200000, 224000, 0, NULL, NULL, NULL, NULL, 0, NULL),
-(20, 0, 9, '20201123X6SI1DZ', NULL, 1, '2020-11-23', 'Elisa Qothrun Nada', '081230388446', 'Nusa Tenggara T', 'Alor', 'wonosari, sumber kalong', '29012', 'jne', 'OKE', '6-10', 71000, 500, 150000, 221000, 1, 'bajua4.jpg', 'Candra', '2234-4553-5533-2233', 'BANK BRI', 3, 'JP0922881');
+INSERT INTO `transaksi` (`id_transaksi`, `id_pelanggan`, `no_order`, `tgl_transaksi`, `nama_pelanggan`, `no_telepon`, `provinsi`, `kota`, `alamat`, `kode_pos`, `expedisi`, `paket`, `estimasi`, `ongkir`, `berat`, `grand_total`, `total_bayar`, `status_bayar`, `bukti_bayar`, `atas_nama`, `no_rek`, `nama_bank`, `status_order`, `no_resi`) VALUES
+(20, 9, '20201123X6SI1DZ', '2020-11-23', 'Elisa Qothrun Nada', '081230388446', 'Nusa Tenggara T', 'Alor', 'wonosari, sumber kalong', '29012', 'jne', 'OKE', '6-10', 71000, 500, 150000, 221000, 1, 'bajua4.jpg', 'Candra', '2234-4553-5533-2233', 'BANK BRI', 3, 'JP0922881');
 
 -- --------------------------------------------------------
 
@@ -359,7 +326,8 @@ ALTER TABLE `berita`
 -- Indexes for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  ADD PRIMARY KEY (`id_detail_transaksi`);
+  ADD PRIMARY KEY (`id_detail_transaksi`),
+  ADD KEY `id_transaksi` (`id_transaksi`);
 
 --
 -- Indexes for table `gambar`
@@ -407,8 +375,7 @@ ALTER TABLE `setting`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_detail_transaksi` (`id_detail_transaksi`);
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `user`
@@ -436,7 +403,7 @@ ALTER TABLE `detail_transaksi`
 -- AUTO_INCREMENT for table `gambar`
 --
 ALTER TABLE `gambar`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -460,7 +427,7 @@ ALTER TABLE `pelanggan_token`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `rekening`
