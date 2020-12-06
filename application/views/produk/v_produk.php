@@ -48,7 +48,7 @@
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_produk?>"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
-                         <?php } ?>d
+                         <?php } ?>
                     </tbody>
                 </table>
               </div>
