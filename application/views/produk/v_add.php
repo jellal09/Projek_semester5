@@ -39,7 +39,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Stok</label>
-                        <input type="text" class="form-control" id="stok"  name="stok" placeholder="stok" value="<?= set_value('stok')?>" >
+                        <input type="number" min="0" class="form-control" id="stok"  name="stok" placeholder="stok" value="<?= set_value('stok')?>" >
                         <?= form_error('stok', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                     </div>

@@ -39,7 +39,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Stok</label>
-                        <input type="text" class="form-control" id="stok"  name="stok" placeholder="stok" value="<?= $produk->stok?>" >
+                        <input type="number" class="form-control" id="stok"   min="0"  name="stok" placeholder="stok" value="<?= $produk->stok?>" >
                         <?= form_error('stok', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Berat</label>
-                        <input name="berat" type="number" class="form-control" min="0" placeholder="Berat Dalam Satuan Gram" value="<?= set_value('berat') ?>">
+                        <input name="berat" type="number" class="form-control" min="0" placeholder="Berat Dalam Satuan Gram" value="<?=$produk->berat?>">
                         <?= form_error('berat', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                     </div>
