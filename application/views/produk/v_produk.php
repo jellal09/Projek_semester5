@@ -42,11 +42,11 @@
                             <td  class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar) ?>" width="120px"></td>
                          
                            
-                            
-                            <td  class="text-center">
-                                <a href="<?= base_url('barang/edit/'. $value->id_produk) ?>" class="btn btn-warning btn-sm" ><i class="fa fa-edit"></i></a>
-                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete<?= $value->id_produk?>"><i class="fa fa-trash"></i></button>
-                            </td>
+                            <td>
+                            <div class="btn-group btn-group-sm">
+                         <a href="<?= base_url('produk/edit/'.$value->id_produk)?>" class="btn btn-warning btn-sm" ><i class="fa fa-edit"></i></a>
+                         <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus<?=$value->id_produk?>"><i class="fas fa-trash"></i></button>
+                      </div> </td>
                         </tr>
                          <?php } ?>
                     </tbody>
