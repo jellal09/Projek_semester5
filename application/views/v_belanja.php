@@ -32,7 +32,7 @@ foreach ($this->cart->contents() as $items) {
                  echo form_input(array('name' => $i.'[qty]',
                   'value' => $items['qty'], 
                   'maxlength' => '3', 
-                  'min' => '0',
+                  'min' => '1',
                   'size' => '5', 
                   'type' => 'number',
                    'class' => 'form-control'
@@ -66,7 +66,7 @@ foreach ($this->cart->contents() as $items) {
 </table>
 <button type="submit" class=" btn btn-primary btn-flat"><i class="fa fa-save"></i> Update Keranjang</button>
          <a href="<?= base_url('belanja/clear')?>" class=" btn btn-danger btn-flat"><i class="fa fa-recycle"></i> Clear Cart</a>
-         <a href="<?= base_url('belanja/cekout')?>" class=" btn btn-success btn-flat"><i class="fa fa-check-square"></i> Checkout</a>
+         <a href="<?= base_url('belanja/checkout')?>" class=" btn btn-success btn-flat"><i class="fa fa-check-square"></i> Checkout</a>
 </div>
 </div>
  <?php echo form_close() ?>
