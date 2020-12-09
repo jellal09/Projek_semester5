@@ -29,7 +29,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">Contact</a>
+            <a href="<?= base_url('home/artikel') ?>" class="nav-link">Artikel</a>
           </li>
 
           <li class="nav-item dropdown">

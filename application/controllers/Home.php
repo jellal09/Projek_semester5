@@ -40,4 +40,27 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('layout/v_wrapper_frontend', $data, FALSE);
 	}
+
+	public function artikel()
+	{
+		$data = array(
+			'title' => 'Artikel',
+			'berita' => $this->m_home->get_all_data_artikel(),
+			'isi' => 'v_artikel',
+		);
+		$this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+	}
+
+	public function detail_berita($id_berita)
+	{
+		$data = array(
+			'title' => 'Artikel',
+			'berita' => $this->m_home->detail_berita($id_berita),
+			'isi' => 'v_detail_berita',
+		);
+		$this->load->view('layout/v_wrapper_frontend', $data, FALSE);
+	}
+
+
+
 }

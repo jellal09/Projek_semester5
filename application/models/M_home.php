@@ -54,5 +54,23 @@ class M_home extends CI_Model
 		$this->db->where('produk.id_kategori', $id_kategori);
 		return $this->db->get()->result();
 	}
+
+	public function get_all_data_artikel()
+	{
+		$this->db->select('*');
+		$this->db->from('berita');
+		$this->db->order_by('id_berita', 'desc');
+		return $this->db->get()->result();
+	}
+
+	public function detail_berita($id_berita)
+	{
+		$this->db->select('*');
+		$this->db->from('berita');
+		//$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
+		$this->db->where('id_berita', $id_berita);
+		return $this->db->get()->row();
+	}
+
 	
 }

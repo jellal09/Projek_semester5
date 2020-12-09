@@ -19,6 +19,7 @@ class M_konfigurasi extends CI_Model
        
     }
 
+
 }
 
 /* End of file M_user.php */

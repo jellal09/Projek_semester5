@@ -42,15 +42,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
-                  <p>Pesanan</p>
-                </a>
-              </li>
+              <a href="<?= base_url('pesanan_masuk')?>" class="nav-link <?php if($this->uri->segment(1)=='pesanan_masuk' ){echo "active";} ?>">
+              <i class="nav-icon fas fa-download"></i>
+              <p> Pesanan Masuk </p>
+            </a>
+          </li>
               <!--nav sub bab produk-->
               <li class="nav-item has-treeview menu-open">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-clipboard-list"></i>
+               <i class="fas fa-tshirt"></i>
                   <p>Produk</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
@@ -73,7 +73,7 @@
               <!--end nav sub bab produk-->
               <li class="nav-item">
                 <a href="<?= base_url('kategori')?>" class="nav-link <?php if($this->uri->segment(1)=='kategori' ){echo "active";} ?>">
-                <i class="nav-icon fas fa-clipboard-list"></i>
+                <i class="nav-icon fas fa-list"></i>
                   <p>Kategori</p>
                 </a>
               </li>
@@ -85,14 +85,14 @@
               </li>
 
             </li>
-            <li class="nav-item ">
+            <!-- <li class="nav-item ">
             <a href="<?= base_url('user')?>" class="nav-link <?php if($this->uri->segment(1)=='user' ){echo "active";} ?>">
             <i class=" nav-icon fas fa-users"></i>
               <p>
                 User
               </p>
             </a>
-            </li>
+            </li> -->
             <!--nav konfigurasi-->
            <li class="nav-item has-treeview menu-open">
               <a href="" class="nav-link">

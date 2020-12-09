@@ -45,6 +45,7 @@
                 <div class="card-header text-muted border-bottom-0">
                   <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
                   <p class="text-muted text-sm"><b>Kategori : </b> <?= $value->nama_kategori ?> </p>
+                  <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
                 </div>
                 <div class="card-body pt-0">
                   <div class="row">
