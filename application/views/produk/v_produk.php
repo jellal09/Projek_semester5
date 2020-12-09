@@ -54,10 +54,10 @@
               </div>
               <!-- /.card-body -->
             </div>
-            <!-- /.card --
+            <!-- /.card -->
     </div>
 
-<!-- Modal hapus -->
+<!--Modal hapus -->
 <?php foreach ($produk as $key => $value) { ?>
                       
                       <div class="modal fade" id="hapus<?=$value->id_produk?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

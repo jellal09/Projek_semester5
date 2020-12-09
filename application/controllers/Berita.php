@@ -221,7 +221,7 @@ class Berita extends CI_Controller {
             'id_berita' =>$id_berita,
             'judul_berita' =>$this->input->post('judul_berita'),
             'jenis_berita' =>$this->input->post('jenis_berita'),
-            'keterangan' =>$this->input->post('keterangan'),
+            'keterangan' =>htmlspecialchars($this->input->post('keterangan', true)),
              'tgl_post' =>date('Y-m-d').$this->input->post('tanggal_post'),
              'tgl_update' =>date('Y-m-d').$this->input->post('tanggal_update'),
            
