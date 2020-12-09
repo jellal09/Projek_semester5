@@ -42,7 +42,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+              <a href="<?= base_url('pesanan_saya')?>" class="nav-link <?php if($this->uri->segment(1)=='pesanan_saya' ){echo "active";} ?>">
                 <i class="nav-icon fas fa-calculator"></i>
                   <p>Pesanan</p>
                 </a>
