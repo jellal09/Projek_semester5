@@ -1,5 +1,32 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
+    <div class="card card-primary">
+    <div class="card-header">
+    <h3 class="card-title">Konfirmasi Pembayaran</h3>
+    </div>
+    <div class="card-body">
+      
+    <table class="table table-bordered">
+        <tr>
+            <th>Nama Produk</th>
+            <th>Jumlah Barang</th>
+            <th>Harga</th>
+        </tr>
+        <?php foreach ($detail_transaksi as $value) { ?>
+        <tr>
+            <td><?= $value->name ?></td>
+            <td><?= $value->qty ?></td>
+            <td>Rp. <?= number_format($value->price,0) ?></td>
+        </tr>
+       <?php } ?> 
+    </table>
+
+    </div>
+    </div>
+    </div>
+
+   
+    <div class="col-sm-12">
     <div class="card card-primary">
     <div class="card-header">
     <h3 class="card-title">No. Rekening Toko</h3>
@@ -16,7 +43,7 @@
         <tr>
             <td><?= $value->nama_bank ?></td>
             <td><?= $value->no_rek ?></td>
-            <td><?= $value->nama_pemilik?></td>
+            <td><?= $value->atas_nama?></td>
         </tr>
        <?php } ?> 
        
@@ -26,13 +53,16 @@
     </div>
     </div>
     </div>
-    <div class="col-sm-6">
+
+    <div class="col-sm-12">
     <div class="card card-primary">
     <div class="card-header">
     <h3 class="card-title">Upload Bukti Pembayaran</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
+
+    
 <?php
 echo form_open_multipart('pesanan_saya/bayar/'.$pesanan->id_transaksi);
 

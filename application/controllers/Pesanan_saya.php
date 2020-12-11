@@ -9,6 +9,9 @@ class Pesanan_saya extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_transaksi');
+        $this->load->model('m_pesanan_masuk');
+        
+        
         
     }
     
@@ -16,6 +19,9 @@ class Pesanan_saya extends CI_Controller
     {
         $data = array('title' => 'Pesanan saya' , 
                     'belum_bayar' => $this->m_transaksi->belum_bayar(),
+                    'diproses' => $this->m_transaksi->diproses(),
+                    'dikirim' => $this->m_transaksi->dikirim(),
+                    'selesai' => $this->m_transaksi->selesai(),
                     'isi' => 'v_pesanan_saya',
                 );
         $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
@@ -28,6 +34,14 @@ class Pesanan_saya extends CI_Controller
         array('required' => '%s Harus Diisi')
         );
 
+        $this->form_validation->set_rules('nama_bank', 'Nama Bank','required',
+        array('required' => '%s Harus Diisi')
+        );
+
+        $this->form_validation->set_rules('no_rek', 'No.Rekening','required',
+        array('required' => '%s Harus Diisi')
+        );
+
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/bukti_bayar/';
             $config['allowed_types'] = 'gif|jpg|png|jpeg|ico';
@@ -37,6 +51,7 @@ class Pesanan_saya extends CI_Controller
             if (!$this->upload->do_upload($field_name)) {
                 $data = array('title' => 'Pembayaran' , 
                                 'pesanan' => $this->m_transaksi->detail_pesanan($id_transaksi),
+                                'detail_transaksi' => $this->m_transaksi->detail_transaksi($id_transaksi),
                                 'rekening' => $this->m_transaksi->rekening(),
                                 'error_upload' => $this->upload->display_errors(),
                                 'isi' => 'v_bayar',
@@ -64,10 +79,24 @@ class Pesanan_saya extends CI_Controller
 
         $data = array('title' => 'Pembayaran' , 
                     'pesanan' => $this->m_transaksi->detail_pesanan($id_transaksi),
+                    'detail_transaksi' => $this->m_transaksi->detail_transaksi($id_transaksi),
                     'rekening' => $this->m_transaksi->rekening(),
                     'isi' => 'v_bayar',
                 );
         $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
     }
+    public function diterima($id_transaksi)
+    {
+        $data= array(
+            'id_transaksi' => $id_transaksi,      
+            'status_order' =>'3'
+
+        );
+        $this->m_pesanan_masuk->update_order($data);
+        $this->session->set_flashdata('pesan', 'Pesanan Telah Diterima');
+        redirect('pesanan_saya');
+    }
+
+
 }
     

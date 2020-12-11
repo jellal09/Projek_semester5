@@ -22,6 +22,8 @@
                   <h5> <i class="icon fas fa-ban"></i>'. $error_upload . '</h5></div>';
                 }
                 echo form_open_multipart('konfigurasi/edit/'.$value->id_konfigurasi)?>
+
+
                  
               <div class="form-row">
                 <div class="col-md-6">
@@ -141,4 +143,6 @@ $("#preview_gambar").change(function(){
 </script>
 <!--end script logo-->
 <?php } ?>
+
+
 
