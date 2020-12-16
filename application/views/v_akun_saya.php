@@ -1,15 +1,27 @@
 <div class="card card-primary card-outline">
     <div class="card-body box-profile">
-    <?= $this->session->flashdata('sukses');
-        //form open
-        echo form_open_multipart('pelanggan/akun'); ?>
+      <?php  if($this->session->flashdata('message')){
+    echo ' <div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h6><i class="icon fas fa-check"></i>';
+    echo $this->session->flashdata('message');
+    echo '</h6></div>';} ?>
+  <?php  if($this->session->flashdata('error')){
+    echo ' <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h6>';
+    echo $this->session->flashdata('error');
+    echo '</h6></div>';
+            } ?>
+        <!-- //form open -->
+       <?= form_open_multipart('pelanggan/akun'); ?>
         <div class="text-center">
             <img class="profile-user-img img-fluid img-circle"
                 src="<?= base_url('assets/foto/'. $this->session->userdata('foto')) ?>"
                 alt="User profile picture">
         <b><h6 class="text-center text-bold">Ubah Foto Profil</h6></b>
         <div class="text-center border-1">
-            <input type="file" name="foto" id="foto" value="<?= set_value('foto') ?>" ></div>
+            <input type="file" name="foto" id="foto" value="<?= set_value('foto') ?>" ><br><small class="text-red">*Maksimum file 2 Mb, format foto gif/jpg/png/jpeg</small></div>
         </div>
        <br>
 

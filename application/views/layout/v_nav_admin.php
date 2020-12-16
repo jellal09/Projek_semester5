@@ -50,7 +50,7 @@
               <!--nav sub bab produk-->
               <li class="nav-item has-treeview menu-open">
               <a href="" class="nav-link">
-               <i class="fas fa-tshirt"></i>
+              <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>Produk</p>
                   <i class="right fas fa-angle-left"></i>
                 </a>
@@ -73,26 +73,26 @@
               <!--end nav sub bab produk-->
               <li class="nav-item">
                 <a href="<?= base_url('kategori')?>" class="nav-link <?php if($this->uri->segment(1)=='kategori' ){echo "active";} ?>">
-                <i class="nav-icon fas fa-list"></i>
+                <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>Kategori</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+              <a href="<?= base_url('laporan')?>" class="nav-link <?php if($this->uri->segment(1)=='laporan' ){echo "active";} ?>">
                 <i class="nav-icon fas fa-file"></i>
-                  <p>Laporan</p>
+                  <p>Laporan Penjualan</p>
                 </a>
               </li>
 
             </li>
-            <!-- <li class="nav-item ">
+             <li class="nav-item ">
             <a href="<?= base_url('user')?>" class="nav-link <?php if($this->uri->segment(1)=='user' ){echo "active";} ?>">
             <i class=" nav-icon fas fa-users"></i>
               <p>
                 User
               </p>
             </a>
-            </li> -->
+            </li> 
             <!--nav konfigurasi-->
            <li class="nav-item has-treeview menu-open">
               <a href="" class="nav-link">
@@ -179,7 +179,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
-        <a href="<?= base_url('auth/logout_user')?>" class="btn btn-primary"> Iya </a>
+        <a href="<?= base_url('auth/logout_user')?>" class="btn btn-success"> Iya </a>
       </div>
     </div>
   </div>

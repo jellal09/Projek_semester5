@@ -2,42 +2,44 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <!-- Main Footer -->
+  <!-- Main Footer  -->
+
   <footer class="main-footer">
-    <!-- To the right -->
-    <div class="flex-w p-b-80">
-    <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Alamat
-				</h4>
-    <p>Jl Bhayangkara RT 003 RW 001,<br>
-       Dusun Seloagung , <br>
-      Siliragung.Banyuwangi </p>
-    </div>
-
-
-    <div class="w-size7 p-t-30 p-l-15 p-r-15 respon5">
-				<h4 class="s-text12 p-b-30">
-					Tentang
-				</h4>
-    <p>Jl Bhayangkara RT 003 RW 001,<br>
-       Dusun Seloagung , <br>
-      Siliragung.Banyuwangi </p>
-    </div>
-
-    <div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
-				<h4 class="s-text12 p-b-30">
-					Hubungi Kami
-				</h4>
-
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 - Toko Istana</a>.All rights reserved. </strong>
+    <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                    <div>
+                        <h4>Alamat Kami</h4>
+                        <p>
+                          Jl Bhayangkara RT 003 RW 001,<br>
+                          Dusun Seloagung , <br>
+                          Siliragung, Banyuwangi
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                  <div>
+                        <h5>Tentang Kami</h5>
+                        <p>
+                          Toko Istana adalah salah satu toko fashion <br> 
+                          yang ada di banyuwangi yang menjual beberapa <br> 
+                          produk fashion seperti baju, celana, aksesoris, <br> 
+                          dan lain-lai. Toko ini menyediakan kebutuhan fashion 
+                          yang anda inginkan
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div>
+                        <h5>Hubungi Kami</h5>
+                          <i class="fas fa-phone"> +62 877-5000-6016</i>
+                    </div>
+                </div>
+            </div>
+            </div>
   </footer>
+
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
 
 </body>
 </html>

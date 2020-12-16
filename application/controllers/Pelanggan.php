@@ -17,9 +17,9 @@ class Pelanggan extends CI_Controller {
            redirect('home');
         }
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', array(
-            'required' => '%s Email Harus Diisi !'));
+            'required' => '%s  harus diisi !'));
         $this->form_validation->set_rules('password', 'Password', 'trim|required', array(
-            'required' => '%s Password Harus Diisi !'));
+            'required' => '%s harus diisi !'));
 
         if($this->form_validation->run() == FALSE){
             $data = array (
@@ -70,21 +70,22 @@ class Pelanggan extends CI_Controller {
         if ($this->session->userdata('email')) {
             redirect('home');
         }
-        $this->form_validation->set_rules('nama_pelanggan', 'Full Name', 'required|trim',
-        array('required'  => 'Nama Lengkap Harus Diisi'));
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama lengkap', 'required|trim',
+        array('required'  => 'Harus Diisi'));
         $this->form_validation->set_rules('email', 'Email', 'required|is_unique[pelanggan.email]|trim|valid_email',
-        array('required'  => 'Email Harus Diisi',
-              'is_unique' => 'Email Sudah Terdaftar'));
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]|matches[ulangi]',
-        array('required'  => 'Password Harus Diisi',
-              'min_length' => 'Isi Password Minimal 8 Karakter '));
+        array('required'  => ' Harus Diisi',
+              'is_unique' => ' Sudah Terdaftar'));
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[ulangi]',
+        array('required'  => ' harus diisi',
+              'min_length' => 'Isi Password Minimal 6 Karakter '));
         $this->form_validation->set_rules('ulangi', 'Ulangi Password','required|trim|matches[password]',
-        array('required'  => 'Ulangi Password'));
+        array('required'  => ' harus diisi',
+              'matches' => 'Tidak sama'));
         $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|max_length[13]', 
-        array('required'   => 'Nomer Telepon Harus Diisi',
+        array('required'   => 'harus diisi',
               'min_length' => 'Isi Nomer Telepon/HP Maksimal 13 Karakter'));
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim',
-        array('required'  => 'Alamat Lengkap Harus Diisi'));  
+        array('required'  => ' harus diisi'));  
 
         if($this->form_validation->run() == FALSE){
         $data = array (
@@ -207,8 +208,10 @@ class Pelanggan extends CI_Controller {
             array( 'required'   => '%s harus diisi'));
         $valid->set_rules('alamat', 'Alamat', 'required',
             array( 'required'   => '%s harus diisi'));
-        $valid->set_rules('no_telepon', 'no_telepon', 'required',
-            array( 'required'   => '%s harus diisi'));
+        $valid->set_rules('no_telepon', 'no_telepon', 'required|trim|max_length[13]', 
+            array('required'   => 'Nomer Telepon Harus Diisi',
+                  'min_length' => 'Isi Nomer Telepon/Hp Maksimal 13 Karakter'));
+
 
         if ($valid->run() == FALSE) {
 
@@ -235,25 +238,25 @@ class Pelanggan extends CI_Controller {
                 $config['upload_path']   = './assets/foto/';                
                 $this->upload->initialize($config);
                 if($this->upload->do_upload('foto')) {
-                    // $old_image = $data['pelanggan']['foto'];
-                    // if ($old_image != 'user.png') {
-                    //    unlink(FCPATH . 'assets/foto/' . $old_image );
-                    // }
                     $new_image = $this->upload->data('file_name');
-                    // $upload_data  = array(  'uploads' => $this->upload->data());
-                    // $config['image_library'] = 'gd2';
-                    // $config['source_image'] = './assets/foto/' . $upload_data['uploads']['file_name'];
-                    // $this->load->library('image_lib', $config);
-                    // $data = array(  'id_pelanggan'   => $id_pelanggan,
-                    //                 'foto'           => $upload_data['uploads']['file_name'],
-                    // );
+                    $upload_data  = array( 'uploads' => $this->upload->data());
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/foto/' . $upload_data['uploads']['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $data = array(  'id_pelanggan'   => $id_pelanggan,
+                                    'foto'           => $upload_data['uploads']['file_name'],
+                                    'nama_pelanggan' => $i->post('nama_pelanggan'),
+                                    'no_telepon'     => $i->post('no_telepon'),
+                                    'alamat'         => $i->post('alamat')
+                    );
                     $this->db->set('foto', $new_image);
+                    $this->session->set_flashdata('message', 'Update Profile Berhasil');
                 }else{
-                    echo $this->upload->display_errors();
+                     $this->session->set_flashdata('error', $this->upload->display_errors());
                 }
             }
+            $this->session->set_userdata($data); 
             $this->m_pelanggan->edit($data);
-            $this->session->set_flashdata('message', 'Update Profile Berhasil');
             redirect(base_url('pelanggan/akun'),'refresh');     
         }
     }
@@ -317,8 +320,14 @@ class Pelanggan extends CI_Controller {
            redirect('pelanggan');
         }
 
-        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[6]|matches[password1]');
+        $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]',
+        array('required' => '%s Harus Diisi !',
+        'matches'   => '%s tidak sama !',
+        'min_length' => '%s minimal 6 karakter !'));
+        $this->form_validation->set_rules('password2', 'Ulangi Password', 'trim|required|min_length[6]|matches[password1]',
+        array('required' => '%s Harus Diisi !',
+        'matches'   => '%s tidak sama !',
+        'min_length' => '%s minimal 6 karakter ! '));
 
        if($this->form_validation->run() == FALSE){
            $data = array(  'title'              => 'Ubah Password',     
@@ -350,10 +359,14 @@ class Pelanggan extends CI_Controller {
 
         $valid->set_rules('current_password', 'Password', 'required|trim',
             array( 'required'   => '%s harus diisi'));
-        $valid->set_rules('password1', 'Password Baru', 'required|trim|min_length[8]|matches[password2]',
-        array( 'matches'    => '%s Password Tidak Sama',
-               'min_length' => '%s Password Minimal 8 Karakter'));
-        $valid->set_rules('password2', 'Ulangi Password',  'required|trim|min_length[8]|matches[password1]');
+        $valid->set_rules('password1', 'Password Baru', 'required|trim|min_length[6]|matches[password2]',
+        array( 'required'   => '%s harus diisi',
+               'matches'    => '%s Tidak Sama',
+               'min_length' => '%s  Minimal 6 Karakter'));
+        $valid->set_rules('password2', 'Ulangi Password',  'required|trim|min_length[6]|matches[password1]',
+            array('required'   => '%s harus diisi',
+                   'matches'    => '%s  Tidak Sama',
+                   'min_length' => '%s  Minimal 6 Karakter'));
 
         if($valid->run() == FALSE){
             $data = array (
