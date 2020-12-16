@@ -94,8 +94,8 @@ echo form_open_multipart('pesanan_saya/bayar/'.$pesanan->id_transaksi);
     <!-- /.card-body -->
 
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="<?= base_url('pesanan_saya') ?>" class="btn btn-success">Back</a>
+        <button type="submit" class="btn btn-primary">Kirim</button>
+        <a href="<?= base_url('pesanan_saya') ?>" class="btn btn-success">Kembali</a>
     </div>
   <?php echo form_close() ?>
 </div>
