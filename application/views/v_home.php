@@ -40,22 +40,20 @@
         echo form_hidden('redirect_page', str_replace('index.php/','', current_url()));
        
         ?>
+
+        <?php
+        if ($value->stok >= 1) {
+         
+        
+
+        ?>
             <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
               <div class="col-12 text-center">
-                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
+                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
                   </div>
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
-              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?>
-              <?php
-              if ($value->stok == 0) {
-                echo '<span class="btn btn-danger">Stok Habis</span>';
-              }else{
-                echo '<span class="btn btn-primary">Stok tersedia</span>';
-              }
-
-              ?>
-              </p>
+              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
               </div>
               <div class="card-body pt-0">
                 <div class="row">
@@ -83,9 +81,10 @@
                 
               </div>
             </div>
+        
             <?php echo form_close(); ?>
           </div>
-<?php } ?>
+<?php } } ?> 
 
 
 

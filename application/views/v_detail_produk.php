@@ -45,7 +45,7 @@
     <div class="col-sm-8">
     <button type="submit" class="btn btn-primary btn-flat swalDefaultSuccess">
     <i class="fas fa-cart-plus fa-lg mr-2"></i> 
-    Add to Cart
+    Masukkan Ke Keranjang
   </button>
     </div>
  </div>
