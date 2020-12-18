@@ -11,11 +11,19 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data = array(
+	/*	$data = array(
 			'title' => 'Home',
 			'produk' => $this->m_home->get_all_data(),
 			'isi' => 'v_home',
 		);
+		$this->load->view('layout/v_wrapper_frontend', $data, FALSE); */
+
+		$data['title'] = 'Home';
+		$data['produk'] = $this->m_home->get_all_data();
+		if ($this->input->post('keyword')) {
+			$data['produk'] = $this->m_home->cariProduk();
+		}
+		$data['isi'] = 'v_home';
 		$this->load->view('layout/v_wrapper_frontend', $data, FALSE);
 	}
 

@@ -72,5 +72,13 @@ class M_home extends CI_Model
 		return $this->db->get()->row();
 	}
 
+	public function cariProduk()
+	{
+		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
+		$keyword = $this->input->post('keyword', true);
+		$this->db->like('nama_produk', $keyword);
+		return $this->db->get('produk')->result();
+	}
+
 	
 }

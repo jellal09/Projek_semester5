@@ -31,6 +31,21 @@
           <li class="nav-item">
             <a href="<?= base_url('home/artikel') ?>" class="nav-link">Artikel</a>
           </li>
+
+          <div class="row">
+            <div class="col">
+              <form accept="" method="post">
+                
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Cari Produk" name="keyword">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
 <!-- 
           <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
