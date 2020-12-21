@@ -41,17 +41,11 @@
        
         ?>
 
-        <?php
-        if ($value->stok >= 1) {
-         
-        
-
-        ?>
-            <div class="card bg-light">
+        <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
-              <div class="col-12 text-center">
+                <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
-                  </div>
+              </div>
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
               </div>
@@ -64,7 +58,7 @@
                 <div class="row">
                 <div class="col-sm-6">
                 <div class="text-left">
-                   <h4><?= number_format($value->harga, 0) ?></h4>
+                   <h4>Rp.<?= number_format($value->harga, 0) ?></h4>
               </div>
                 </div>
                 <div class="col-sm-6">
@@ -72,9 +66,16 @@
                   <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
                     <i class="fas fa-eye"></i>
                   </a>
-                  <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                    <i class="fas fa-cart-plus"> Add</i> 
-                  </button>
+                  <?php 
+                  if($value->stok=="0"){?>
+                  <a href="#"class="btn btn-danger btn-sm">Habis</a>
+                   <?php } else { //jika stok = 0 ?>
+                    <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
+                    <i class="fas fa-cart-plus"> Add </i> 
+                    </button>
+                    <?php } ?>
+                  
+                 
                 </div>
                 </div>
                 </div>
@@ -84,7 +85,7 @@
         
             <?php echo form_close(); ?>
           </div>
-<?php } } ?> 
+<?php }  ?> 
 
 
 
