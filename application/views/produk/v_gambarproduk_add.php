@@ -57,7 +57,7 @@
            </div>
            <p class="text-sm">Keterangan : <?=$value->judul_gambar?></p>
                  <!--div button-->
-                 <button class="btn btn-danger btn-sm btn-xs btn-block" data-toggle="modal" data-target="#hapus<?=$value->id_gambar?>"><i class="fas fa-trash"></i> Hapus Gambar</button>
+                 <button class="btn btn-danger btn-sm btn-xs btn-block" data-toggle="modal" data-target="#hapus<?=$value->id_gambar?>"><i class="fas fa-trash"></i> Hapus Gambar </button>
  
             </div> 
             <?php } ?>
@@ -96,8 +96,9 @@ $("#preview_gambar").change(function(){
                               </button>
                             </div>
                       
-                            <div class="modal-body"> 
-                              Apakah anda yakin ingin menghapus gambar ini?
+                            <div class="text-center">
+                            <img src="<?=base_url('assets/detail_gambar/'.$value->gambar)?>" width="90px" >
+                             <p> Apakah anda yakin ingin menghapus gambar ini?</p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
