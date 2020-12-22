@@ -9,29 +9,25 @@
               <div class="row">
                 <div class="col-lg-4">
                     <div>
-                        <h4>Alamat Kami</h4>
+                    <h6>Alamat Kami</h6>
                         <p>
-                          Jl Bhayangkara RT 003 RW 001,<br>
-                          Dusun Seloagung , <br>
+                          Jl Bhayangkara RT 003 RW 001,
+                          Dusun Seloagung , 
                           Siliragung, Banyuwangi
                         </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                   <div>
-                        <h5>Tentang Kami</h5>
+                        <h6>Tentang Kami</h6>
                         <p>
-                          Toko Istana adalah salah satu toko fashion <br> 
-                          yang ada di banyuwangi yang menjual beberapa <br> 
-                          produk fashion seperti baju, celana, aksesoris, <br> 
-                          dan lain-lai. Toko ini menyediakan kebutuhan fashion 
-                          yang anda inginkan
+                          Toko Istana adalah e commerce yang bergerak pada fashion masa kini 
                         </p>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div>
-                        <h5>Hubungi Kami</h5>
+                    <h6>Hubungi Kami</h6>
                           <i class="fas fa-phone"> +62 877-5000-6016</i>
                     </div>
                 </div>

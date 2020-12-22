@@ -54,13 +54,16 @@
               <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
                   </div>
-              <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
-              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
+              
               </div>
               <div class="card-body pt-0">
                 <div class="row">
-                  
+                <b><h2 class="lead"><?= $value->nama_produk ?></b></h2></br>
+                
                 </div>
+                <div class="row">
+                <h2 class="text-muted text-sm">Stok:  <?= $value->stok ?></h2>
+              </div>
               </div>
               <div class="card-footer">
                 <div class="row">
@@ -100,7 +103,10 @@
         </div>
       </div>
 </div>
-
+<br>
+<br>
+</br>
+</br>
 <!-- SweetAlert2 -->
 <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript">

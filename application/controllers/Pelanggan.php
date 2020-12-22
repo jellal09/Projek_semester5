@@ -76,16 +76,16 @@ class Pelanggan extends CI_Controller {
         array('required'  => ' Harus Diisi',
               'is_unique' => ' Sudah Terdaftar'));
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[ulangi]',
-        array('required'  => ' harus diisi',
+        array('required'  => ' Harus diisi',
               'min_length' => 'Isi Password Minimal 6 Karakter '));
         $this->form_validation->set_rules('ulangi', 'Ulangi Password','required|trim|matches[password]',
-        array('required'  => ' harus diisi',
+        array('required'  => ' Harus diisi',
               'matches' => 'Tidak sama'));
-        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|max_length[13]', 
-        array('required'   => 'harus diisi',
-              'min_length' => 'Isi Nomer Telepon/HP Maksimal 13 Karakter'));
+        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|exact_length[12]', 
+        array('required'   => 'Harus diisi',
+              'min_length' => 'Isi Nomer Telepon dengan benar'));
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim',
-        array('required'  => ' harus diisi'));  
+        array('required'  => ' Harus diisi'));  
 
         if($this->form_validation->run() == FALSE){
         $data = array (

@@ -57,6 +57,10 @@
 </div>
 <!-- /.card-body -->
 </div>
+<br>
+<br>
+</br>
+</br>
 <!-- /.card -->
 <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- AdminLTE for demo purposes -->
