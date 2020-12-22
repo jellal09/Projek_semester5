@@ -26,6 +26,13 @@
               </div>
 <div class="card card-solid">
       <div class="card-body pb-0">
+
+        <?php if (empty($produk)) : ?>
+          <div class="alert alert-danger" role="alert">
+            <h5 class="text-center">Produk tidak ditemukan</h5>            
+          </div>
+        <?php endif; ?>
+        
         <div class="row ">
 
 <?php foreach ($produk as $key => $value) { ?>
