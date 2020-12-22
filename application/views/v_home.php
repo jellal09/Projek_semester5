@@ -75,7 +75,7 @@
                   <?php 
                   if($value->stok=="0"){?>
                   <a href="#"class="btn btn-danger btn-sm">Habis</a>
-                   <?php } else { //jika stok >0 ?>
+                   <?php } else { //jika stok > 0 ?>
                     <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
                       <i class="fas fa-eye"></i>
                     </a>

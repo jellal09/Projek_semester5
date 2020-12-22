@@ -63,7 +63,7 @@
                   </a>
                 </li>
               <li class="nav-item">
-              <a href="<?= base_url('gambarbarang')?>" class="nav-link <?php if($this->uri->segment(1)=='gambarbarang' ){echo "active";} ?>">
+              <a href="<?= base_url('gambar_produk')?>" class="nav-link <?php if($this->uri->segment(1)=='gambar_produk' ){echo "active";} ?>">
                   <i class="nav-icon fas fa-image"></i>
                   <p>Gambar Produk</p>
                   </a>
