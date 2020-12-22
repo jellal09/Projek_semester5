@@ -50,7 +50,7 @@
             <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
               <div class="col-12 text-center">
-                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
+                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
                   </div>
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
