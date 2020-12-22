@@ -48,17 +48,12 @@
        
         ?>
 
-        <div class="card bg-light">
+
+            <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
-<<<<<<< HEAD
-                <div class="col-12 text-center">
-                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
-              </div>
-=======
               <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
                   </div>
->>>>>>> 73202795dae8095493f7930788eece0d5720bd84
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
               </div>
@@ -74,31 +69,31 @@
                    <h4>Rp.<?= number_format($value->harga, 0) ?></h4>
               </div>
                 </div>
+                
                 <div class="col-sm-6">
-                <div class="text-right">
-                  <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
-                    <i class="fas fa-eye"></i>
-                  </a>
+                  <div class="text-right">
                   <?php 
                   if($value->stok=="0"){?>
                   <a href="#"class="btn btn-danger btn-sm">Habis</a>
-                   <?php } else { //jika stok = 0 ?>
+                   <?php } else { //jika stok >0 ?>
+                    <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
+                      <i class="fas fa-eye"></i>
+                    </a>
                     <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                    <i class="fas fa-cart-plus"> Add </i> 
+                      <i class="fas fa-cart-plus"> Add</i> 
                     </button>
                     <?php } ?>
-                  
-                 
                 </div>
-                </div>
-                </div>
+              </div>
+
+            </div>
                 
               </div>
             </div>
         
             <?php echo form_close(); ?>
           </div>
-<?php }  ?> 
+<?php  } ?> 
 
 
 
