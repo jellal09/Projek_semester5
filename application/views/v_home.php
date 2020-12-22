@@ -26,6 +26,13 @@
               </div>
 <div class="card card-solid">
       <div class="card-body pb-0">
+
+        <?php if (empty($produk)) : ?>
+          <div class="alert alert-danger" role="alert">
+            <h5 class="text-center">Produk tidak ditemukan</h5>            
+          </div>
+        <?php endif; ?>
+        
         <div class="row ">
 
 <?php foreach ($produk as $key => $value) { ?>
@@ -43,9 +50,15 @@
 
         <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
+<<<<<<< HEAD
                 <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
               </div>
+=======
+              <div class="col-12 text-center">
+                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
+                  </div>
+>>>>>>> 73202795dae8095493f7930788eece0d5720bd84
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
               </div>
