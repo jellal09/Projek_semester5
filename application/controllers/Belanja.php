@@ -30,10 +30,12 @@ class Belanja extends CI_Controller {
         	'qty'     => $this->input->post('qty'),
         	'price'   => $this->input->post('price'),
         	'name'    => $this->input->post('name'),
-		);
+        ); 
+       
 		$this->cart->insert($data);
 		redirect($redirect_page, 'refresh');
-	}
+    
+}
 
 	public function delete($rowid)
     {
@@ -50,12 +52,20 @@ class Belanja extends CI_Controller {
                 'qty'   => $this->input->post($i. '[qty]'),
                 
         );
+
+        // $val = $this->input->post('val');
+        // $stok = $data['qty'];
+
+        // if ($val > $stok) {
+        //   $this->session->set_flashdata('pesan', 'error');   
+        // }else {
         
         $this->cart->update($data);
         $i++;
         }
         redirect('belanja');
-	}
+    }
+	// }
 	public function clear()
     {
         $this->cart->destroy();

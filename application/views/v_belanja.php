@@ -24,6 +24,7 @@ foreach ($this->cart->contents() as $items) {
         $barang = $this->m_home->detail_produk($items['id']);   
         $berat = $items['qty'] * $barang->berat;
         $total_berat = $total_berat+$berat;
+       // $val = $data['val']- $barang->stok;
 ?>
      
 
@@ -31,7 +32,7 @@ foreach ($this->cart->contents() as $items) {
                 <td><?php
                  echo form_input(array('name' => $i.'[qty]',
                   'value' => $items['qty'], 
-                  'maxlength' => '3', 
+                  'max' => $barang->stok, 
                   'min' => '1',
                   'size' => '5', 
                   'type' => 'number',

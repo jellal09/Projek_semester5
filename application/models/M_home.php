@@ -9,6 +9,8 @@ class M_home extends CI_Model
 		$this->db->select('*');
 		$this->db->from('produk');
 		$this->db->join('kategori', 'kategori.id_kategori = produk.id_kategori', 'left');
+		$this->db->where('produk.stok != 0');
+		
 		$this->db->order_by('produk.id_produk', 'desc');
 		return $this->db->get()->result();
 	}
