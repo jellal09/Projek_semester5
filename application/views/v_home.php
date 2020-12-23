@@ -50,7 +50,7 @@
             <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
               <div class="col-12 text-center">
-                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="250px">
+                    <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
                   </div>
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
@@ -64,16 +64,16 @@
                 <div class="row">
                 <div class="col-sm-6">
                 <div class="text-left">
-                   <h4><?= number_format($value->harga, 0) ?></h4>
+                   <h4>Rp. <?= number_format($value->harga, 0) ?></h4>
               </div>
                 </div>
                 <div class="col-sm-6">
                 <div class="text-right">
-                  <a href="<?= base_url('home/detail_barang/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
+                  <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
                     <i class="fas fa-eye"></i>
                   </a>
                   <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                    <i class="fas fa-cart-plus"> Add</i> 
+                    <i class="fas fa-cart-plus"> Tambah</i> 
                   </button>
                 </div>
                 </div>
@@ -105,7 +105,7 @@
     $('.swalDefaultSuccess').click(function() {
       Toast.fire({
         icon: 'success',
-        title: 'Barang Berhasil Ditambahkan Ke Keranjang'
+        title: 'Produk Berhasil Ditambahkan Ke Keranjang'
       })
     });
   });

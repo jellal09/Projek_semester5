@@ -11,7 +11,7 @@
 <div class="col-12 product-image-thumbs">
   <div class="product-image-thumb active"><img src="<?= base_url('assets/gambar/'.$produk->gambar) ?>" alt="Product Image"></div>
   <?php foreach ($gambar as $key => $value) { ?>
-    <div class="product-image-thumb" ><img src="<?= base_url('assets/gambarbarang/'.$value->gambar) ?>"></div>
+    <div class="product-image-thumb" ><img src="<?= base_url('assets/detail_gambar/'.$value->gambar) ?>"></div>
  <?php } ?>
 
 </div>
