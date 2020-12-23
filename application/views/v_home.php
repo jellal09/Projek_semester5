@@ -26,6 +26,13 @@
               </div>
 <div class="card card-solid">
       <div class="card-body pb-0">
+
+        <?php if (empty($produk)) : ?>
+          <div class="alert alert-danger" role="alert">
+            <h5 class="text-center">Produk tidak ditemukan</h5>            
+          </div>
+        <?php endif; ?>
+        
         <div class="row ">
 
 <?php foreach ($produk as $key => $value) { ?>
@@ -41,32 +48,31 @@
        
         ?>
 
-        <?php
-        if ($value->stok >= 1) {
-         
-        
 
-        ?>
             <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
               <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
                   </div>
-              <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
-              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
+              
               </div>
               <div class="card-body pt-0">
                 <div class="row">
-                  
+                <b><h2 class="lead"><?= $value->nama_produk ?></b></h2></br>
+                
                 </div>
+                <div class="row">
+                <h2 class="text-muted text-sm">Stok:  <?= $value->stok ?></h2>
+              </div>
               </div>
               <div class="card-footer">
                 <div class="row">
                 <div class="col-sm-6">
                 <div class="text-left">
-                   <h4><?= number_format($value->harga, 0) ?></h4>
+                   <h4>Rp.<?= number_format($value->harga, 0) ?></h4>
               </div>
                 </div>
+                
                 <div class="col-sm-6">
                 <div class="text-right">
                   <a href="<?= base_url('home/detail_produk/'.$value->id_produk) ?>" class="btn btn-sm btn-success">
@@ -77,21 +83,28 @@
                   </button>
                 </div>
                 </div>
+
                 </div>
+              </div>
+
+            </div>
                 
               </div>
             </div>
         
             <?php echo form_close(); ?>
           </div>
-<?php } } ?> 
+<?php  } ?> 
 
 
 
         </div>
       </div>
 </div>
-
+<br>
+<br>
+</br>
+</br>
 <!-- SweetAlert2 -->
 <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script type="text/javascript">

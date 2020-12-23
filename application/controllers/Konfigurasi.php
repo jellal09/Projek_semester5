@@ -131,6 +131,7 @@ class Konfigurasi extends CI_Controller {
                 'facebook' =>$this->input->post('facebook'),
                 'instagram' =>$this->input->post('instagram'),
                 'deskripsi' =>$this->input->post('deskripsi'),
+                'lokasi' =>42,
                
                 
             );
@@ -151,7 +152,7 @@ class Konfigurasi extends CI_Controller {
             'facebook' =>$this->input->post('facebook'),
             'instagram' =>$this->input->post('instagram'),
             'deskripsi' =>$this->input->post('deskripsi'),
-           
+            'lokasi' =>42,
             
         );
         $this->m_konfigurasi->edit($data);

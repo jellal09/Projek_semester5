@@ -11,18 +11,12 @@
             </div>
             <div class="col-12 col-sm-6">
               <h3 class="my-3"><?= $berita->judul_berita ?></h3>
-              <hr>
-            
-
+              
               <hr>
               <p><?= $berita->keterangan ?></p>
-
               <hr>
 
-
               <?php echo form_close(); ?>
-
-            
 
             </div>
           </div>
@@ -30,7 +24,10 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-
+      <br>
+<br>
+</br>
+</br>
 <!-- SCRIPT -->
 <script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url() ?>/template/dist/js/demo.js"></script>
