@@ -79,7 +79,7 @@
                     <i class="fas fa-eye"></i>
                   </a>
                   <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                    <i class="fas fa-cart-plus"> Tambah</i> 
+                    <i class="fas fa-cart-plus">Add</i> 
                   </button>
                 </div>
                 </div>

@@ -1,5 +1,6 @@
 
 
+
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -28,7 +29,15 @@
               </div>
 <div class="card card-solid">
       <div class="card-body pb-0">
-        <div class="row d-flex align-items-stretch">
+
+        <?php if (empty($produk)) : ?>
+          <div class="alert alert-danger" role="alert">
+            <h5 class="text-center">Produk tidak ditemukan</h5>            
+          </div>
+        <?php endif; ?>
+        
+        <div class="row ">
+       
 
 
 <?php foreach ($produk as $key => $value) { ?>
@@ -40,19 +49,19 @@
               <div class="col-12 text-center">
                     <img src="<?= base_url('assets/gambar/'.$value->gambar)?>"  width="300px" height="300px">
                   </div>
-              <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
-              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
+             
               </div>
               <div class="card-body pt-0">
                 <div class="row">
-                  
+                <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
+              <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
                 </div>
               </div>
               <div class="card-footer">
                 <div class="row">
                 <div class="col-sm-6">
                 <div class="text-left">
-                   <h4><?= number_format($value->harga, 0) ?></h4>
+                   <h4>Rp.<?= number_format($value->harga, 0) ?></h4>
               </div>
                 </div>
                 <div class="col-sm-6">
@@ -61,7 +70,7 @@
                     <i class="fas fa-eye"></i>
                   </a>
                   <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                      <i class="fas fa-cart-plus"></i> Beli
+                      <i class="fas fa-cart-plus"></i> Add
                   </button>
                   </a>
                 </div>
@@ -78,3 +87,26 @@
         </div>
       </div>
 </div>
+<br>
+<br>
+</br>
+</br>
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    $('.swalDefaultSuccess').click(function() {
+      Toast.fire({
+        icon: 'success',
+        title: 'Barang Berhasil Ditambahkan Ke Keranjang'
+      })
+    });
+  });
+   </script>

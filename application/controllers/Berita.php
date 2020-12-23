@@ -187,7 +187,7 @@ class Berita extends CI_Controller {
             $data = array(
                 'title' => 'Artikel',
                 'isi' => 'berita/v_editberita',
-                'berita' => $this->m_berita->get_all_data(), 
+                'berita' => $this->m_berita->get_data($id_berita), 
                 'error_upload' => $this->upload->display_errors(),
             );
             $this->load->view('layout/v_wrapper_admin', $data, FALSE);  
@@ -238,7 +238,7 @@ class Berita extends CI_Controller {
     $data = array(
         'title' => 'Artikel',
         'isi' => 'berita/v_editberita',
-        'berita' => $this->m_berita->get_all_data(), 
+        'berita' => $this->m_berita->get_data($id_berita), 
     );
     $this->load->view('layout/v_wrapper_admin', $data, FALSE);
     }

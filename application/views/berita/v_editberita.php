@@ -12,30 +12,30 @@
               <!-- /.card-body -->
               
               <div class="card-body">
-              <?php 
-                  foreach ($berita as $key => $value) { ?>
               <?php
-                      if(isset($error_upload)){
-                        echo '<div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h5> <i class="icon fas fa-ban"></i>'. $error_upload. '</h5></div>';
-                      }
-                      echo form_open_multipart('berita/edit/'. $value->id_berita)?>
+     if(isset($error_upload)){
+       echo '<div class="alert alert-danger alert-dismissible">
+       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+       <h5> <i class="icon fas fa-ban"></i>'. $error_upload. '</h5></div>';
+     }
+     echo form_open_multipart('berita/edit/'.$berita->id_berita)?>
+     
+    <div class="row">
                 <div class="col-md-12">
 
                 <div class="form-group">
                       <label for="exampleInputEmail1">Jenis artikel</label>
-                      <input type="text" class="form-control" id="jenis_berita"  name="jenis_berita" placeholder="Masukkan jenis berita" value="<?=$value->jenis_berita?>" >
+                      <input type="text" class="form-control" id="jenis_berita"  name="jenis_berita" placeholder="Masukkan jenis berita" value="<?=$berita->jenis_berita?>" >
                       <?= form_error('jenis_berita', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                 <div class="form-group">
                       <label for="exampleInputPassword1">Judul artiklel</label>
-                      <input type="text" class="form-control" id="judul_berita"  name="judul_berita" placeholder="judul berita" value="<?=$value->judul_berita?>" required>
+                      <input type="text" class="form-control" id="judul_berita"  name="judul_berita" placeholder="judul berita" value="<?=$berita->judul_berita?>" required>
                       <?= form_error('judul_berita', '<small class="text-danger pl-2">', '</small>');  ?>
                       </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Isi artikel</label>
-                    <textarea type="text"  rows="10" class="form-control" id="keterangan"  name="keterangan" placeholder="keterangan" ><?=$value->keterangan?></textarea>
+                    <textarea type="text"  rows="10" class="form-control" id="keterangan"  name="keterangan" placeholder="keterangan" ><?=$berita->keterangan?></textarea>
                     <?= form_error('keterangan', '<small class="text-danger pl-2">', '</small>');  ?>
                     </div>
                     </div>
@@ -49,7 +49,7 @@
                       </div></div>
                       <div class="col-md-6">
                       <div class="form-group">
-                        <img src="<?=base_url('/assets/gambar_konfigurasi/'.$value->gambar)?>" id="gambar_load"  width="90px" height="120px">
+                        <img src="<?=base_url('/assets/gambar_konfigurasi/'.$berita->gambar)?>" id="gambar_load"  width="90px" height="120px">
                       </div>
                     </div> 
                 </div> 
@@ -66,9 +66,9 @@
           </div>   
         </div>
         
-      
+        </div>
         <!--end layout-->
-        <script>
+<script>
 function bacaGambar(input){
   if(input.files && input.files[0]){
     var reader=new FileReader();
@@ -83,7 +83,7 @@ $("#preview_gambar").change(function(){
 });
 
 </script>
-<?php } ?>
+
 <!--end script logo-->
 
 
