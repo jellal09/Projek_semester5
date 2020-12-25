@@ -87,6 +87,17 @@ class Belanja extends CI_Controller {
                             array('required' => '%s Harus Diisi'));
         $this->form_validation->set_rules('paket', 'Paket', 'required',
                              array('required' => '%s Harus Diisi'));
+        $this->form_validation->set_rules('kode_pos', 'Kode Pos', 'required|max_length[8]',
+                             array('required' => '%s Harus Diisi',
+                                'max_length' => 'Maksimal 8 Karakter'));
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama lengkap', 'required|trim|max_length[100]',
+        array('required'  => 'Harus Diisi',
+          'max_length' => 'Terlalu Panjang'));
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required',
+        array('required'  => 'Harus Diisi'));
+      $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|max_length[13]', 
+        array('required'   => 'Harus diisi',
+              'max_length' => 'Isi Nomer Telepon dengan benar'));
         if ($valid->run()===FALSE) {
             $data = array (
                 'title'     => 'Checkout Belanja',

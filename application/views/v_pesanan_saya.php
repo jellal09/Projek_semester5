@@ -35,6 +35,7 @@
           <tr>
             <th>No.Order</th>
             <th>Tanggal</th>
+            <th>Batas Bayar</th>
             <th>Expedisi</th>
             <th>Total Bayar</th>
             <th>Action</th>
@@ -43,6 +44,7 @@
             <tr>
             <td><?= $value->no_order ?></td>
             <td><?= $value->tgl_transaksi ?></td>
+            <td><?= $value->batas_bayar ?></td>
             <td>
               <b><?= $value->expedisi ?></b> <br>
               Paket : <?= $value->paket ?> <br>
@@ -66,8 +68,10 @@
             </td>
           </tr>
         <?php } ?>
-         
+        
         </table>
+      <hr>
+     <span class="border border-secondary text-bold">Lakukan pembayaran maksimal 1x24 jam Setelah Proses Pemesanan, Jika Melebihi Batas Waktu Pembayaran Maka Transaksi Otomatis Akan DiHapus</span>
     </div>
     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
       <!-- data pesanan diproses -->
@@ -174,6 +178,7 @@
 </div>
 </div>
 
+</div>
 </div>
 
 <?php foreach ($dikirim as $key => $value) { ?>

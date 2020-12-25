@@ -17,7 +17,8 @@ class Home extends CI_Controller {
 			'isi' => 'v_home',
 		);
 		$this->load->view('layout/v_wrapper_frontend', $data, FALSE); */
-
+ 		$lama=1;
+        $this->db->query("DELETE FROM transaksi WHERE STATUS_ORDER='0' AND DATEDIFF(CURDATE(), tgl_transaksi) >= $lama");
 		$data['title'] = 'Home';
 		$data['produk'] = $this->m_home->get_all_data();
 		if ($this->input->post('keyword')) {

@@ -16,8 +16,11 @@ class Pelanggan extends CI_Controller {
         if ($this->session->userdata('email')) {
            redirect('home');
         }
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email', array(
-            'required' => '%s  harus diisi !'));
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|max_length[100]', array(
+            'required' => '%s  harus diisi !',
+            'valid_email' => 'Tidak Valid',
+            'max_length' => 'Maksimal 100 karakter'
+            ));
         $this->form_validation->set_rules('password', 'Password', 'trim|required', array(
             'required' => '%s harus diisi !'));
 
@@ -70,22 +73,29 @@ class Pelanggan extends CI_Controller {
         if ($this->session->userdata('email')) {
             redirect('home');
         }
-        $this->form_validation->set_rules('nama_pelanggan', 'Nama lengkap', 'required|trim',
-        array('required'  => 'Harus Diisi'));
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[pelanggan.email]|trim|valid_email',
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama lengkap', 'required|trim|max_length[100]',
+        array('required'  => 'Harus Diisi',
+          'max_length' => 'Terlalu Panjang'));
+        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[pelanggan.email]|trim|valid_email|max_length[100]',
         array('required'  => ' Harus Diisi',
-              'is_unique' => ' Sudah Terdaftar'));
+              'is_unique' => ' Sudah Terdaftar',
+              'valid_email' => 'Tidak Valid',
+              'max_length'  => 'Maksimal 100 Karakter'
+              ));
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[ulangi]',
         array('required'  => ' Harus diisi',
-              'min_length' => 'Isi Password Minimal 6 Karakter '));
+              'min_length' => 'Isi Password Minimal 6 Karakter',
+              'matches' => 'Tidak Sama'));
         $this->form_validation->set_rules('ulangi', 'Ulangi Password','required|trim|matches[password]',
         array('required'  => ' Harus diisi',
               'matches' => 'Tidak sama'));
-        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|exact_length[12]', 
+        $this->form_validation->set_rules('no_telepon', 'Nomor Telepon', 'required|trim|exact_length[12]|is_unique[pelanggan.no_telepon]', 
         array('required'   => 'Harus diisi',
-              'min_length' => 'Isi Nomer Telepon dengan benar'));
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim',
-        array('required'  => ' Harus diisi'));  
+              'exact_length' => 'Isi Nomer Telepon dengan benar',
+              'is_unique' => 'Sudah Terdaftar'));
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim|max_length[200]',
+        array('required'  => ' Harus diisi',
+          'max_length' => 'Maksimal 200 karakter'));  
 
         if($this->form_validation->run() == FALSE){
         $data = array (
@@ -204,15 +214,15 @@ class Pelanggan extends CI_Controller {
         //validasi input
         $valid = $this->form_validation;
 
-        $valid->set_rules('nama_pelanggan', 'Nama lengkap', 'required',
-            array( 'required'   => '%s harus diisi'));
-        $valid->set_rules('alamat', 'Alamat', 'required',
-            array( 'required'   => '%s harus diisi'));
-        $valid->set_rules('no_telepon', 'no_telepon', 'required|trim|max_length[13]', 
+        $this->form_validation->set_rules('nama_pelanggan', 'Nama lengkap', 'required|trim|max_length[100]',
+        array('required'  => 'Harus Diisi',
+          'max_length' => 'Terlalu Panjang'));
+        $valid->set_rules('alamat', 'Alamat', 'required|max_length[200]',
+            array( 'required'   => '%s harus diisi',
+              'max_length' => 'Terlalu Panjang'));
+        $valid->set_rules('no_telepon', 'Nomer Telepon', 'required|trim|max_length[13]', 
             array('required'   => 'Nomer Telepon Harus Diisi',
-                  'min_length' => 'Isi Nomer Telepon/Hp Maksimal 13 Karakter'));
-
-
+                  'max_length' => 'Isi Nomer Telepon/Hp Maksimal 13 Karakter'));
         if ($valid->run() == FALSE) {
 
         $data = array(      'title'             => 'Profile Saya',      
@@ -252,7 +262,7 @@ class Pelanggan extends CI_Controller {
                     $this->db->set('foto', $new_image);
                     $this->session->set_flashdata('message', 'Update Profile Berhasil');
                 }else{
-                     $this->session->set_flashdata('error', $this->upload->display_errors());
+                     $this->session->set_flashdata('error', 'Upload gambar hanya PNG, JPEG, JPG, GIF dan ukuran maksimum 2 Mb !');
                 }
             }
             $this->session->set_userdata($data); 
@@ -262,7 +272,11 @@ class Pelanggan extends CI_Controller {
     }
     public function lupaPassword()
     {
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[100]',
+        array('required'  => ' Harus Diisi',
+              'valid_email' => 'Tidak Valid',
+              'max_length'  => 'Maksimal 100 Karakter'
+              ));
         if ($this->form_validation->run() == FALSE) {
             $data = array(     'title'              => 'Lupa Password',     
                                 'isi'               => 'v_lupa_password'

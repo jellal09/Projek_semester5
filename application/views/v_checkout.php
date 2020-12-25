@@ -3,6 +3,11 @@
     <!-- title row -->
     <div class="row">
     <div class="col-12">
+        <?php
+    echo validation_errors('<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h6><i class="icon fas fa-check"></i>','</h5></div>');
+    ?>
         <h4>
         <i class="fas fa-shopping-bag"></i> Toko Istana
         <small class="float-right">Date:<?= date('d-m-Y') ?></small>
@@ -49,11 +54,7 @@
     </div>
     <!-- /.col -->
     </div>  
-    <?php
-    echo validation_errors('<div class="alert alert-danger alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h6><i class="icon fas fa-check"></i>','</h5></div>');
-    ?>
+
     <?php 
     echo form_open('belanja/checkout');
     $no_order = date('Ymd').strtoupper(random_string('alnum', 8)) ;
@@ -163,7 +164,7 @@
     <div class="row no-print">
     <div class="col-12">
         <a href="<?= base_url('belanja') ?>" class="btn btn-default"><i class="fas fa-backward"></i> Kembali ke Keranjang</a>
-        <button type="submit" class="btn btn-dark float-right"><i class="far fa-credit-card"></i> Buat Pesanan
+        <button type="submit" class="btn btn-dark float-right"></i> Buat Pesanan
         </button>
     </div>
     </div>

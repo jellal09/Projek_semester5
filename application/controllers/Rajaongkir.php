@@ -129,7 +129,7 @@ class Rajaongkir extends CI_Controller {
         echo "<option value=''>--Pilih Paket--</option>";
         foreach ($data_paket as $key => $value) {
             echo "<option value='" . $value['service'] . "' ongkir='" . $value['cost'][0]['value'] . "' estimasi='". $value['cost'][0]['etd'] ."'>";
-            echo $value['service'] . " | Rp. ". $value['cost'][0]['value']." | ".$value['cost'][0]['etd'] . " Hari ";
+            echo $value['service'] . " | Rp. ". number_format($value['cost'][0]['value'],0)." | ".$value['cost'][0]['etd'] . " Hari ";
             echo "</option>";
         }
 	}

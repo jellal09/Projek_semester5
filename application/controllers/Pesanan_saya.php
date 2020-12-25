@@ -71,11 +71,37 @@ class Pesanan_saya extends CI_Controller
                   'status_bayar' => '1',
                   'bukti_bayar' => $upload_data['uploads']['file_name'],    
                 );
-                $this->m_transaksi->upload_bukti_bayar($data);
-                $this->session->set_flashdata('pesan', 'Bukti Pembayaran Berhasil Diupload');
-                redirect('pesanan_saya');
-            }
-        }
+                                    // echo "<pre>";
+                //    $a = $this->input->post('id_transaksi');  yang lama
+                   $a = $id_transaksi;//kodingan yang baru sukses
+                    $b = $this->db->query("SELECT * FROM detail_transaksi WHERE detail_transaksi.id_transaksi = '$a'")->result_array();
+                    // echo "data detail trasaksi";
+                    // print_r($b);
+                    foreach ($b as $c) {
+                      $id_produk = $c['id_produk'];
+                      $qty = $c['qty'];
+                      $produk = $this->db->query("SELECT * FROM produk WHERE id_produk = '$id_produk'")->row_array();
+                    //   echo "data produk";
+                    // print_r($produk);
+                    //   foreach ($produk as $key) {
+                          $stok = $produk['stok'];
+                    // }
+                      $hitung = $stok - $qty;
+                      $arr = [
+                          'id_produk' => $id_produk,
+                          'stok'      => $hitung
+                      ];
+                    //   print_r($hitung);
+                    //   print_r($arr);
+                      $this->db->set('stok', $arr['stok']);
+                      $this->db->where('id_produk', $arr['id_produk']);
+                      $this->db->update('produk'); 
+                    }
+                    $this->m_transaksi->upload_bukti_bayar($data);
+                    $this->session->set_flashdata('pesan', 'Bukti Pembayaran Berhasil Di Upload !');
+                    redirect('pesanan_saya');    
+                    }
+                }
 
         $data = array('title' => 'Pembayaran' , 
                     'pesanan' => $this->m_transaksi->detail_pesanan($id_transaksi),
