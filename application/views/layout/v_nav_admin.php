@@ -13,7 +13,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=base_url()?>template/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?=base_url()?>assets/gambar/useradmin.png" class="img-circle elevation-2" alt="User Image" width="50px">
         </div>
         <div class="info">
           <a href="#" class="d-block"> WeLcome <?php echo $this->session->userdata('username')?></a>
@@ -32,14 +32,6 @@
             </a>
           </li>
             
-              
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-line"></i>
-                  <p>Grafik stok</p>
-                </a>
-              </li>
-
               <li class="nav-item">
           <a href="<?= base_url('admin/pesanan_masuk')?>" class="nav-link <?php if($this->uri->segment(2)== 'pesanan_masuk' and $this->uri->segment(1) == 'admin' ){echo "active";} ?>">
               <i class="nav-icon fas fa-shopping-bag"></i>
@@ -85,37 +77,22 @@
               </li>
 
             </li>
-             <li class="nav-item ">
-            <a href="<?= base_url('user')?>" class="nav-link <?php if($this->uri->segment(1)=='user' ){echo "active";} ?>">
-            <i class=" nav-icon fas fa-users"></i>
-              <p>
-                User
-              </p>
-            </a>
-            </li> 
+             
+             <!--nav artikel-->
+             <li class="nav-item">
+             <a href="<?= base_url('berita')?>" class="nav-link <?php if($this->uri->segment(1)=='berita' ){echo "active";} ?>">
+             <i class=" nav-icon far fa-newspaper"></i>
+                  <p> Artikel</p>
+                  </a>
+            </li>
             <!--nav konfigurasi-->
-           <li class="nav-item has-treeview menu-open">
-              <a href="" class="nav-link">
-              <i class="nav-icon fas fa-user-cog"></i>
-                  <p>Konfigurasi</p>
-                  <i class="right fas fa-angle-left"></i>
-                </a>
-              <!--sub bab-->
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="<?= base_url('konfigurasi')?>" class="nav-link <?php if($this->uri->segment(1)=='konfigurasi' ){echo "active";} ?>">
+            <li class="nav-item">
+            <a href="<?= base_url('konfigurasi')?>" class="nav-link <?php if($this->uri->segment(1)=='konfigurasi' ){echo "active";} ?>">
                 <i class="nav-icon fas fa-cog"></i>
                   <p>Konfigurasi Web</p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?= base_url('berita')?>" class="nav-link <?php if($this->uri->segment(1)=='berita' ){echo "active";} ?>">
-                <i class="nav-icon fas fa-cog"></i>
-                  <p>Konfigurasi Artikel</p>
-                  </a>
-              </li>
-            </ul>
-          </li>
+            </li>
+              
 
                <!-- end nav konfigurasi-->
               
@@ -136,7 +113,7 @@
        
       </nav>
       <!-- /.sidebar-menu -->
-    </div>
+    </div>  
     <!-- /.sidebar -->
   </aside>
 

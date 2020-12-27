@@ -22,6 +22,10 @@ class M_admin extends CI_Model {
     {
         return $this->db->get('pelanggan')->num_rows();
     }
+    public function total_artikel()
+    {
+        return $this->db->get('berita')->num_rows();
+    }
     public function data_setting()
     {
         $this->db->select('*');

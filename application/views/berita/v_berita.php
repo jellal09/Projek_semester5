@@ -15,8 +15,8 @@
               <thead class="text-center">
                 <tr>
                   <th>No</th>
-                  <th>Jenis Berita</th>
-                  <th>Judul Berita</th>
+                  <th>Jenis Artikel</th>
+                  <th>Judul Artikel</th>
                   <th>Gambar</th>
                   <th>Keterangan</th>
                   <th>Action</th>
@@ -33,7 +33,7 @@
                       <td class=""><?= $no++; ?></td>
                       <td class=""><?= $value->jenis_berita ?></td>
                       <td class="text-center"><?= $value->judul_berita ?></td>
-                      <td class="text-center"><img src="<?= base_url('assets/gambar_konfigurasi/'.$value->gambar)?>" width="120px"></td>
+                      <td class="text-center"><img src="<?= base_url('assets/gambar_konfigurasi/'.$value->gambar)?>" width="120px" hight="100px"></td>
                       <td class="text-justify"><?= $value->keterangan ?></td>
                       <td class="text-center py=0 ">
                       <div class="btn-group btn-group-sm">

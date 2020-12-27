@@ -28,7 +28,7 @@
                     <tr>
                     <td class="text-center"><?= $no++; ?></td>
                     <td class="text-center"><?= $value->nama_produk?></td>
-                    <td class="text-center"><img src="<?=base_url('assets/gambar/'.$value->gambar)?>" width="120px"></td>
+                    <td class="text-center"><img src="<?=base_url('assets/gambar/'.$value->gambar)?>" width="120px" hight="100px"></td>
                     <td class="text-center"><h6><?= $value->total_gambar?></h6></td>
                     <td class="text-center">
                       <div class="btn-group btn-group-sm">
