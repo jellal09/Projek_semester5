@@ -52,9 +52,9 @@
         </div>
         <?= form_error('password', '<small class="text-danger pl-2">', '</small>');  ?>
         
-        <p class="mb-2" >
+       <!-- <p class="mb-2" >
         <a href="<?= base_url('auth/lupapwd')?>"><small>Lupa Password?</small></a>
-        </p>
+        </p>-->
     
 
       <div class="social-auth-links text-center mb-2">
