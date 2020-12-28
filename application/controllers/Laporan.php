@@ -32,8 +32,8 @@ class Laporan extends CI_Controller {
             }else{ // Jika terisi            
                 $detail_transaksi = $this->m_laporan->view_by_date($tgl_awal, $tgl_akhir);  // Panggil fungsi view_by_date yang ada di TransaksiModel            
                 $url_cetak = 'laporan/cetak?tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir;            
-                $tgl_awal = date('Y-m-d', strtotime($tgl_awal)); // Ubah format tanggal jadi dd-mm-yyyy            
-                $tgl_akhir = date('Y-m-d', strtotime($tgl_akhir)); // Ubah format tanggal jadi dd-mm-yyyy            
+                $tgl_awal = date('d-m-Y', strtotime($tgl_awal)); // Ubah format tanggal jadi dd-mm-yyyy            
+                $tgl_akhir = date('d-m-Y', strtotime($tgl_akhir)); // Ubah format tanggal jadi dd-mm-yyyy            
                 $label = 'Periode Tanggal  : ' .$tgl_awal.'  hingga  '.$tgl_akhir;        
             } 
             $data = array(
@@ -55,8 +55,8 @@ class Laporan extends CI_Controller {
                 $label = 'Semua Data Transaksi';        
             }else{ // Jika terisi            
                 $detail_transaksi = $this->m_laporan->view_by_date($tgl_awal, $tgl_akhir);  // Panggil fungsi view_by_date yang ada di TransaksiModel            
-                $tgl_awal = date('Y-m-d', strtotime($tgl_awal)); // Ubah format tanggal jadi dd-mm-yyyy            
-                $tgl_akhir = date('Y-m-d', strtotime($tgl_akhir)); // Ubah format tanggal jadi dd-mm-yyyy            
+                $tgl_awal = date('d-m-Y', strtotime($tgl_awal)); // Ubah format tanggal jadi dd-mm-yyyy            
+                $tgl_akhir = date('d-m-Y', strtotime($tgl_akhir)); // Ubah format tanggal jadi dd-mm-yyyy            
                 $label = 'Periode Tanggal  : ' .$tgl_awal.'  hingga  '.$tgl_akhir;       
             } 
             

@@ -78,7 +78,7 @@
                                         
                     <tr>
                       <td class="text-center"><?= $no++; ?></td>
-                      <td><?=date('Y-m-d', strtotime($value->tgl_transaksi)) ?></td>
+                      <td><?=date('d-m-Y', strtotime($value->tgl_transaksi)) ?></td>
                       <td class="text"><p>Nama: <?= $value->nama_pelanggan ?></p>
                                                <p>Hp: <?= $value->no_telepon ?></p>
                                                <p>Alamat: <?= $value->alamat?>, <?= $value->kota?>, <?= $value->provinsi?><br class="text-bold"><?= $value->kode_pos?></p></td>

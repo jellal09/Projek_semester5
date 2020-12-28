@@ -55,11 +55,11 @@
               <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
               </div>
-              <!--<div class="card-body pt-0">
+              <div class="card-body pt-0">
                 <div class="row">
                   
                 </div>
-              </div>-->
+              </div>
               <div class="card-footer">
                 <div class="row">
                 <div class="col-sm-6">

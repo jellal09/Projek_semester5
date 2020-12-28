@@ -8,8 +8,9 @@ class M_laporan extends CI_Model // function CRUD detail gambar
 public function get_all_data()
     {
         $this->db->select('*');
-        $this->db->from('detail_transaksi');
-        $this->db->join('transaksi','detail_transaksi.id_transaksi = transaksi.id_transaksi','inner');
+        $this->db->from('transaksi');
+        $this->db->join('detail_transaksi','detail_transaksi.id_transaksi = transaksi.id_transaksi','inner');
+        $this->db->where('status_bayar= 1');
         $query = $this->db->get()->result();
         return $query;   
        
