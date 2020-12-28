@@ -54,8 +54,13 @@
              
               </div>
               <div class="card-body pt-0">
+<<<<<<< HEAD
                 <div>
                 <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
+=======
+                <div class="row">
+                <h2 class="lead"><b><?= $value->nama_produk ?></b></h2> <br>
+>>>>>>> 7f69aab4274312a1a91ec81212b8203e3477cf75
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
                 </div>
               </div>
@@ -72,7 +77,7 @@
                     <i class="fas fa-eye"></i>
                   </a>
                   <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                      <i class="fas fa-cart-plus"></i> Add
+                      <i class="fas fa-cart-plus"></i> Tambah
                   </button>
                   </a>
                 </div>
