@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-    <div class="card card-primary">
+    <div class="card card-secondary">
     <div class="card-header">
     <h3 class="card-title">Konfirmasi Pembayaran</h3>
     </div>
@@ -27,12 +27,12 @@
 
    
     <div class="col-sm-12">
-    <div class="card card-primary">
+    <div class="card card-secondary">
     <div class="card-header">
     <h3 class="card-title">No. Rekening Toko</h3>
     </div>
     <div class="card-body">
-        <p>Silahkan Transfer Uang Ke Salah Satu Daftar No.Rekening Di Bawah Ini Sebesar : <h1 class="text-primary">Rp. <?= number_format($pesanan->total_bayar,0) ?>.-</h1></p> <br>
+        <p>Silahkan Transfer Uang Ke Salah Satu Daftar No.Rekening Di Bawah Ini Sebesar : <h1 class="text-danger">Rp. <?= number_format($pesanan->total_bayar,0) ?>.-</h1></p> <br>
     <table class="table">
         <tr>
             <th>Bank</th>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="col-sm-12">
-    <div class="card card-primary">
+    <div class="card card-secondary">
     <div class="card-header">
     <h3 class="card-title">Upload Bukti Pembayaran</h3>
     </div>
@@ -94,8 +94,8 @@ echo form_open_multipart('pesanan_saya/bayar/'.$pesanan->id_transaksi);
     <!-- /.card-body -->
 
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Kirim</button>
         <a href="<?= base_url('pesanan_saya') ?>" class="btn btn-success">Kembali</a>
+        <button type="submit" class="btn btn-primary">Kirim</button>
     </div>
   <?php echo form_close() ?>
 </div>
