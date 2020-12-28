@@ -54,13 +54,9 @@
              
               </div>
               <div class="card-body pt-0">
-<<<<<<< HEAD
                 <div>
                 <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
-=======
-                <div class="row">
-                <h2 class="lead"><b><?= $value->nama_produk ?></b></h2> <br>
->>>>>>> 7f69aab4274312a1a91ec81212b8203e3477cf75
+
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
                 </div>
               </div>
