@@ -1,6 +1,3 @@
-
-
-
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -37,13 +34,18 @@
         <?php endif; ?>
         
         <div class="row ">
-       
-
-
 <?php foreach ($produk as $key => $value) { ?>
+        <div class="col-sm-4">
 
+          <?php
+            echo form_open('belanja/add');
+            echo form_hidden('id', $value->id_produk);
+            echo form_hidden('qty', 1);
+            echo form_hidden('price', $value->harga);
+            echo form_hidden('name', $value->nama_produk);
+            echo form_hidden('redirect_page', str_replace('index.php/','', current_url()));
+          ?>
 
-        <div class="col-sm-4 d-flex align-items-stretch">
             <div class="card bg-light">
               <div class="card-header text-muted border-bottom-0">
               <div class="col-12 text-center">
@@ -52,7 +54,7 @@
              
               </div>
               <div class="card-body pt-0">
-                <div class="row">
+                <div>
                 <h2 class="lead"><b><?= $value->nama_produk ?></b></h2>
               <p class="text-muted text-sm"><b>Stok: </b> <?= $value->stok ?></p>
                 </div>
