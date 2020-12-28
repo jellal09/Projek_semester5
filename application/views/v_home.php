@@ -23,7 +23,7 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="sr-only">Next</span>
                 </a>
-              </div>
+              </div> 
 <div class="card card-solid">
       <div class="card-body pb-0">
 
@@ -73,7 +73,7 @@
                     <i class="fas fa-eye"></i>
                   </a>
                   <button type="submit" class="btn btn-sm btn-primary swalDefaultSuccess">
-                    <i class="fas fa-cart-plus"> Add</i> 
+                    <i class="fas fa-cart-plus"> Tambah</i> 
                   </button>
                 </div>
                 </div>
