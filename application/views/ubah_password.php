@@ -9,11 +9,11 @@
                 <tbody>
                    <tr>
                     <td width="25%">Password</td>
-                    <th><input type="password" name="current_password" class="form-control" id="current_password" placeholder="Masukan password"><?= form_error('current_password', '<small class="text-danger">', '</small>'); ?></th>
+                    <th><input type="password" name="current_password" class="form-control" id="current_password" placeholder="Masukan password lama"><?= form_error('current_password', '<small class="text-danger">', '</small>'); ?></th>
                     </tr>
                     <tr>
                     <td>Password Baru </td>
-                    <th><input type="password" name="password1" class="form-control" id="password1" placeholder="Password Baru"><?= form_error('password1', '<small class="text-danger">', '</small>'); ?></th>                    
+                    <th><input type="password" name="password1" class="form-control" id="password1" placeholder="Password Baru"><?= form_error('password1', '<small class="text-danger">', '</small>'); ?> <small>  Isi password minimal 6 karakter</small>    </th>             
                     </tr>
                     <tr>
                     <td>Ulangi Password </td>

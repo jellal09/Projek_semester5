@@ -3,7 +3,7 @@
 <div class="col-sm-4">
 <div class="register-box">
   <div class="register-logo">
-  <img src="<?= base_url() ?>assets/gambar/logo.png" class="text-center" width="360px">
+  <img src="<?= base_url() ?>assets/gambar/Picture.png" class="text-center" width="360px">
   </div>
   
   <div class="card">
@@ -15,7 +15,7 @@
       <form action="<?= base_url('pelanggan/ubahPassword')?>" method="post">
       <div class="form-group row">
         <div class="col-sm-12 mb-3">
-          <input type="password"  id="password1" class="form-control" name="password1" placeholder="Masukan passsword baru"> <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
+          <input type="password"  id="password1" class="form-control" name="password1" placeholder="Masukan passsword baru"> <?= form_error('password1', '<small class="text-danger">', '</small>'); ?> <small>  Isi password minimal 6 karakter</small>
         </div>
         </div>
 

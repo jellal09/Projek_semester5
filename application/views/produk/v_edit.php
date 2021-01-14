@@ -27,7 +27,7 @@
                       <!-- textarea -->
                       <div class="form-group">
                         <label>Kategori</label>
-                        <select  class="form-control" name="id_kategori" placeholder="id_kategori">
+                        <select  class="form-control" name="id_kategori">
                          <!-- Memanggil value kategori-->
                          <option value="<?=$produk->id_produk?>"><?=$produk->nama_kategori?></option>
                          <?php foreach ($kategori as $key => $value) { ?>

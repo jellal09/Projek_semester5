@@ -2,7 +2,7 @@
 <div class="col-sm-2"></div>
 <div class="col-md-8">
 <div class="register-logo">
-  <img src="<?= base_url() ?>assets/gambar/logo.png" class="text-center" width="360px">
+  <img src="<?= base_url() ?>assets/gambar/Picture.png" class="text-center" width="280px">
   </div>
 
   <div class="card">
@@ -10,17 +10,17 @@
       <form action="<?= base_url('pelanggan/register')?>" method="post">
     <div class="form-group row">  
        <div class="col-sm-12 ">
-          <input type="text" class="form-control" value="<?= set_value('nama_pelanggan') ?>" name="nama_pelanggan" placeholder="Full Name"> <?= form_error('nama_pelanggan', '<small class="text-danger">', '</small>'); ?>
+          <input type="text" class="form-control" value="<?= set_value('nama_pelanggan') ?>" name="nama_pelanggan" placeholder="Masukan Nama Lengkap"> <?= form_error('nama_pelanggan', '<small class="text-danger">', '</small>'); ?>
         </div>
   </div>
         <div class="form-group row">  
           <div class="col-sm-12">
-            <input type="email" class="form-control" value="<?= set_value('email') ?>" name="email" placeholder="Email"> <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
+            <input type="email" class="form-control" value="<?= set_value('email') ?>" name="email" placeholder="Masukan Email"> <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
           </div>
         </div> 
         <div class="form-group row"> 
             <div class="col-sm-6 ">
-              <input type="password" class="form-control" name="password" value="<?= set_value('password') ?>" placeholder="Password"> <?= form_error('password', '<small class="text-danger">', '</small>'); ?>
+              <input type="password" class="form-control" name="password" value="<?= set_value('password') ?>" placeholder="Masukan Password"> <?= form_error('password', '<small class="text-danger">', '</small>'); ?>   <small>  Isi password minimal 6 karakter</small>
             </div>    
             <div class="col-sm-6">
               <input type="password" class="form-control" name="ulangi" value="<?= set_value('password') ?>" placeholder="Ulangi password">

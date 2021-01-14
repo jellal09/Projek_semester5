@@ -6,10 +6,10 @@
                 </ol>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="<?= base_url() ?>assets/slider/slider1.jpg">
+                    <img class="d-block w-100" src="<?= base_url() ?>assets/slider/Picture3.png">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="<?= base_url() ?>assets/slider/slider2.jpg">
+                    <img class="d-block w-100" src="<?= base_url() ?>assets/slider/Pic4.png">
                   </div>
                   <div class="carousel-item">
                     <img class="d-block w-100" src="<?= base_url() ?>assets/slider/slider3.jpg">

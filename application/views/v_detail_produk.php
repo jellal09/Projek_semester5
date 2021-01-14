@@ -20,8 +20,9 @@
 <div class="col-12 col-sm-6">
 <h3 class="my-3"><?= $produk->nama_produk ?></h3>
 <hr>
-<p>Stok : <?= $produk->stok ?></p>
+<p> <b> Stok : </b> <?= $produk->stok ?></p>
 <hr>
+<b> Deskripsi : </b> 
 <?= $produk->keterangan ?>
 <hr>
 <div class="bg-gray py-2 px-3 mt-4">

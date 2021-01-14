@@ -3,7 +3,7 @@
 <div class="col-sm-4">
 <div class="register-box">
   <div class="register-logo">
-  <img src="<?= base_url() ?>assets/gambar/logo.png" class="text-center" width="360px">
+  <img src="<?= base_url() ?>assets/gambar/Picture.png" class="text-center" width="250px">
   </div>
   
   <div class="card">
@@ -32,7 +32,4 @@
   </div><!-- /.card -->
 </div>
 <!-- /.register-box -->
-<br>
-<br>
-</br>
-</br>
+</div>
